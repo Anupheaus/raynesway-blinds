@@ -51,7 +51,7 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: 938d9d939928ee53b8bea288172a2669
           projectName: rayneswayblinds
-          directory: /public
+          directory: public
           # Optional: Enable this if you want to have GitHub Deployments triggered
           # gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           # Optional: Switch what branch you are publishing to.
