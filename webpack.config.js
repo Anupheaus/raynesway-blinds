@@ -50,9 +50,7 @@ module.exports = {
     alias: {
       'react': path.join(__dirname, './node_modules/react'),
       'react-dom': path.join(__dirname, './node_modules/react-dom'),
-      '@anupheaus/common': path.resolve(__dirname, '../common/src'),
-      '@anupheaus/react-ui': path.resolve(__dirname, '../react-ui/src'),
-    }
+    },
   },
   devServer: {
     static: {
@@ -60,6 +58,7 @@ module.exports = {
     },
     compress: true,
     port: 9000,
+    historyApiFallback: true,
   },
   stats: {
     assets: false,

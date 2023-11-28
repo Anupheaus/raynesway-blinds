@@ -16,4 +16,24 @@ export const Typography = TypographyComponent.augmentWith({
     color: theme.text.secondary,
     shadow: '0px 1px 3px rgba(0 0 0 / 30%)',
   },
+  'website-title-menu-item': {
+    size: 18,
+    name: 'EB Garamond',
+    weight: 500,
+    spacing: 6,
+    transform: 'uppercase',
+    shadow: '0px 1px 3px rgba(0 0 0 / 30%)',
+  },
+  'heading': {
+    size: 22,
+    shadow: '0px 1px 3px rgba(0 0 0 / 30%)',
+  },
+  'paragraph': {
+    size: 18,
+    shadow: '0px 1px 3px rgba(0 0 0 / 30%)',
+  },
+  'title': {
+    size: 34,
+    shadow: '0px 1px 3px rgba(0 0 0 / 30%)',
+  },
 });

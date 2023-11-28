@@ -16,14 +16,6 @@
     "allowJs": true,
     "baseUrl": ".",
     "skipLibCheck": true,
-    "paths": {
-      "@anupheaus/common": [
-        "../common/src"
-      ],
-      "@anupheaus/react-ui": [
-        "../react-ui/src"
-      ]
-    },
     "lib": [
       "DOM",
       "ES2020",

@@ -1,21 +1,8 @@
-import { createComponent, createRootThemeProvider, Carousel, createStyles } from '@anupheaus/react-ui';
+import { createComponent, createRootThemeProvider } from '@anupheaus/react-ui';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Content } from './Content';
 import { theme } from './theme';
 import { TitleBar } from './title-bar';
-
-const imageURLs = [
-  './images/first-image.webp',
-  './images/second-image.webp',
-  './images/third-image.webp',
-  './images/fourth-image.webp',
-  './images/fifth-image.webp',
-  './images/sixth-image.webp',
-];
-
-const useStyles = createStyles({
-  carousel: {
-    opacity: 0.5,
-  },
-});
 
 const GlobalTheme = createRootThemeProvider({
   globalStyles: {
@@ -38,11 +25,19 @@ const GlobalTheme = createRootThemeProvider({
 });
 
 export const App = createComponent('App', () => {
-  const { css } = useStyles();
+
   return (
     <GlobalTheme>
-      <TitleBar />
-      <Carousel imageURLs={imageURLs} intervalMS={7000} transitionDurationMS={3000} className={css.carousel} />
+      <BrowserRouter>
+        <Routes>
+          <Route path="*" element={(
+            <>
+              <TitleBar />
+              <Content />
+            </>
+          )} />
+        </Routes>
+      </BrowserRouter>
     </GlobalTheme>
   );
 });
