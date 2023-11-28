@@ -38,6 +38,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: package
+          path: "public"
       - name: Setup Environment
         uses: actions/setup-node@v1
         with:
@@ -50,7 +51,7 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: 938d9d939928ee53b8bea288172a2669
           projectName: rayneswayblinds
-          directory: /
+          directory: /public
           # Optional: Enable this if you want to have GitHub Deployments triggered
           # gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           # Optional: Switch what branch you are publishing to.
@@ -59,4 +60,4 @@ jobs:
           # Optional: Change the working directory
           # workingDirectory: /
           # Optional: Change the Wrangler version, allows you to point to a specific version or a tag such as `beta`
-          # wranglerVersion: '3'
+          wranglerVersion: '3'
