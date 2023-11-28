@@ -46,8 +46,6 @@ jobs:
           node-version: 16.x
           registry-url: https://npm.pkg.github.com/
           scope: "@anupheaus"
-      - name: Configure NPM
-        run: echo "registry=https://npm.pkg.github.com/@anupheaus" >> .npmrc
       - name: Publish
         uses: cloudflare/pages-action@v1
         with:
@@ -63,4 +61,4 @@ jobs:
           # Optional: Change the working directory
           # workingDirectory: my-site
           # Optional: Change the Wrangler version, allows you to point to a specific version or a tag such as `beta`
-          # wranglerVersion: '3'
+          wranglerVersion: '3'
