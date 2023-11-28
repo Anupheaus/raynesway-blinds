@@ -11,7 +11,7 @@
     "build": "webpack --mode production"
   },
   "files": [
-    "dist"
+    "public"
   ],
   "typings": "dist/index",
   "dependencies": {
