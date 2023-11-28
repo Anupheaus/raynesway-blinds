@@ -23,13 +23,11 @@ jobs:
       #   run: npm run test-ci
       - name: Build
         run: npm run build --if-present
-      - name: Pack
-        run: npm pack
       - name: Upload
         uses: actions/upload-artifact@v2
         with:
           name: package
-          path: "*.tgz"
+          path: "/public/**/*.*"
 
   Publish:
     needs: [Build]
@@ -52,7 +50,7 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: 938d9d939928ee53b8bea288172a2669
           projectName: rayneswayblinds
-          directory: public
+          directory: /
           # Optional: Enable this if you want to have GitHub Deployments triggered
           # gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           # Optional: Switch what branch you are publishing to.
