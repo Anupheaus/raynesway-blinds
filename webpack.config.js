@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ProgressPlugin = require('progress-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   entry: { index: './src/index.tsx' },
@@ -22,19 +23,19 @@ module.exports = {
       },
     }],
   },
-  // optimization: {
-  //   minimize: true,
-  //   minimizer: [
-  //     new TerserPlugin(/*{
-  //       parallel: true,
-  //       terserOptions: {
-  //         // keep_classnames: true,
-  //         // keep_fnames: true,
-  //         // sourceMap: true,
-  //       },
-  //     }*/),
-  //   ],
-  // },
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        parallel: true,
+        terserOptions: {
+          keep_classnames: true,
+          keep_fnames: true,
+          sourceMap: false,
+        },
+      }),
+    ],
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, './public/index.html'),
