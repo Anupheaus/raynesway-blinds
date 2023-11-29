@@ -111,7 +111,7 @@ export const TitleBar = createComponent('TitleBar', () => {
       </Flex>
       <Flex tagName={'title-bar-title'} isVertical gap={4} disableGrow align={'center'} className={css.titleContainer}>
         <Link to="/" className={css.menuItemLink}>
-          <img src={'./images/logo.webp'} alt={'logo'} width={80} height={80} className={css.logo} />
+          <img src={'/images/logo.png'} alt={'logo'} width={80} height={80} className={css.logo} />
           <Typography type={'website-title'} className={css.title}>~ RAYNESWAY BLINDS ~</Typography>
         </Link>
       </Flex>
