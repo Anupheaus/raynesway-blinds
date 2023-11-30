@@ -49,7 +49,6 @@ export const Typography = TypographyComponent.augmentWith({
     shadow: 'rgba(0, 0, 0, 0.4) 0px 4px 5px',
   },
   'message-simple': {
-    name: 'Avenir',
     size: 86,
     color: '#878994',
     shadow: 'rgba(0, 0, 0, 0.4) 0px 4px 5px',
