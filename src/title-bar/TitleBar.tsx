@@ -1,8 +1,9 @@
-import { createComponent, createStyles, Flex } from '@anupheaus/react-ui';
+import { createComponent, createStyles, Flex, Tooltip, useDelegatedBound } from '@anupheaus/react-ui';
 import { theme } from '../theme';
 import { Typography } from '../typography';
 import Color from 'color';
 import { Link } from 'react-router-dom';
+import { Icon } from '../icon';
 
 const useStyles = createStyles({
   titleBar: {
@@ -83,10 +84,24 @@ const useStyles = createStyles({
     right: 10,
     bottom: 10,
   },
+  socialLinks: {
+    paddingRight: 6,
+  },
+  socialLink: {
+    cursor: 'pointer',
+  },
 });
 
 export const TitleBar = createComponent('TitleBar', () => {
   const { css } = useStyles();
+
+  const visit = useDelegatedBound((page: string) => () => {
+    switch (page) {
+      case 'twitter': window.open('https://twitter.com/rayneswayblinds', '_blank'); break;
+      case 'facebook': window.open('https://www.facebook.com/rayneswayblinds', '_blank'); break;
+      case 'instagram': window.open('https://www.instagram.com/rayneswayblinds', '_blank'); break;
+    }
+  });
 
   return (
     <Flex tagName="title-bar" className={css.titleBar} align="center">
@@ -109,14 +124,25 @@ export const TitleBar = createComponent('TitleBar', () => {
           </Link>
         </Flex>
       </Flex>
-      <Flex tagName={'title-bar-title'} isVertical gap={4} disableGrow align={'center'} className={css.titleContainer}>
+      <Flex tagName="title-bar-title" isVertical gap={4} disableGrow align={'center'} className={css.titleContainer}>
         <Link to="/" className={css.menuItemLink}>
-          <img src={'/images/logo.png'} alt={'logo'} width={80} height={80} className={css.logo} />
-          <Typography type={'website-title'} className={css.title}>~ RAYNESWAY BLINDS ~</Typography>
+          <img src="/images/logo.png" alt="Raynesway Blinds Logo" width={80} height={80} className={css.logo} />
+          <Typography type="website-title" className={css.title}>~ RAYNESWAY BLINDS ~</Typography>
         </Link>
       </Flex>
-      <Flex tagName={'title-bar-contact-details'} className={css.contactDetails}>
+      <Flex tagName="title-bar-contact-details" isVertical className={css.contactDetails} gap={8} align="right" height="min-content">
         <Typography type={'website-title-telephone-number'}>03330 470585</Typography>
+        <Flex tagName="title-bar-social-links" gap={8} className={css.socialLinks}>
+          <Tooltip content="Visit our Facebook page">
+            <Icon name="facebook" color={theme.text.secondary} className={css.socialLink} onClick={visit('facebook')} />
+          </Tooltip>
+          <Tooltip content="View our Twitter feed">
+            <Icon name="twitter" color={theme.text.secondary} className={css.socialLink} onClick={visit('twitter')} />
+          </Tooltip>
+          <Tooltip content="View our Instagram feed">
+            <Icon name="instagram" color={theme.text.secondary} className={css.socialLink} onClick={visit('instagram')} />
+          </Tooltip>
+        </Flex>
       </Flex>
     </Flex>
   );
