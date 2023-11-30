@@ -87,7 +87,7 @@ const useStyles = createStyles({
   socialLinks: {
     paddingRight: 6,
   },
-  socialLink: {
+  link: {
     cursor: 'pointer',
   },
 });
@@ -131,16 +131,20 @@ export const TitleBar = createComponent('TitleBar', () => {
         </Link>
       </Flex>
       <Flex tagName="title-bar-contact-details" isVertical className={css.contactDetails} gap={8} align="right" height="min-content">
-        <Typography type={'website-title-telephone-number'}>03330 470585</Typography>
+        <a href="tel:+443330470585" className={css.link}>
+          <Tooltip content="Call us on 03330 470585">
+            <Typography type={'website-title-telephone-number'} className={css.link}>03330 470585</Typography>
+          </Tooltip>
+        </a>
         <Flex tagName="title-bar-social-links" gap={8} className={css.socialLinks}>
           <Tooltip content="Visit our Facebook page">
-            <Icon name="facebook" color={theme.text.secondary} className={css.socialLink} onClick={visit('facebook')} />
+            <Icon name="facebook" color={theme.text.secondary} className={css.link} onClick={visit('facebook')} />
           </Tooltip>
           <Tooltip content="View our Twitter feed">
-            <Icon name="twitter" color={theme.text.secondary} className={css.socialLink} onClick={visit('twitter')} />
+            <Icon name="twitter" color={theme.text.secondary} className={css.link} onClick={visit('twitter')} />
           </Tooltip>
           <Tooltip content="View our Instagram feed">
-            <Icon name="instagram" color={theme.text.secondary} className={css.socialLink} onClick={visit('instagram')} />
+            <Icon name="instagram" color={theme.text.secondary} className={css.link} onClick={visit('instagram')} />
           </Tooltip>
         </Flex>
       </Flex>
