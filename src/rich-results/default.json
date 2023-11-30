@@ -1,0 +1,30 @@
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "url": "https://rayneswayblinds.com/blinds",
+      "name": "Blinds",
+      "image": "https://rayneswayblinds.com/images/second-image.webp",
+      "dateCreated": "2023-11-30 12:00:00"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "url": "https://rayneswayblinds.com/shutters",
+      "name": "Shutters",
+      "image": "https://rayneswayblinds.com/images/window-shutters-3.jpg",
+      "dateCreated": "2023-11-30 12:00:00"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "url": "https://rayneswayblinds.com/awnings",
+      "name": "Awnings",
+      "image": "https://rayneswayblinds.com/images/awnings-2.jpg",
+      "dateCreated": "2023-11-30 12:00:00"
+    }
+  ]
+}

@@ -6,6 +6,8 @@ import { Awnings } from './awnings';
 import { Background } from './background';
 import { Blinds } from './blinds';
 import { Shutters } from './shutters';
+import { Helmet } from 'react-helmet';
+import defaultRichResults from './rich-results/default.json';
 
 const useStyles = createStyles({
   background: {
@@ -89,16 +91,22 @@ export const Content = createComponent('Content', () => {
   const hasRendered = useRef(new Map<string, boolean>()).current;
   const refresh = useForceUpdate();
 
-  const [backgroundClasses, contentClasses, carouselClasses] = useMemo<[string[], string[], string[]]>(() => {
+  const [title, description, richResults, backgroundClasses, carouselClasses] = useMemo<[string, string, AnyObject, string[], string[]]>(() => {
     switch (pathname.toLowerCase()) {
       case '/blinds':
-        return [[css.backgroundLeft, css.backgroundDown], [], [css.fadeCarousel]];
+        return ['Raynesway Blinds - Blinds', 'Discover the perfect window solutions with Raynesway Blinds! Explore our exquisite collection ' +
+          'of blinds, meticulously crafted to elevate your space.  From stylish designs to customizable options, find the ideal window treatments ' +
+          'for every room.', defaultRichResults, [css.backgroundLeft, css.backgroundDown], [css.fadeCarousel]];
       case '/awnings':
-        return [[css.backgroundRight, css.backgroundDown], [], [css.fadeCarousel]];
+        return ['Raynesway Blinds - Awnings', 'Elevate your outdoor living with Raynesway Blinds\' awnings! Explore our premium range of stylish and durable ' +
+          'awnings, designed to enhance your space while providing shade and comfort. From sleek modern designs to classic styles, Raynesway Blinds\' awnings ' +
+          'offers a perfect blend of form and function for your patio or deck.', defaultRichResults, [css.backgroundRight, css.backgroundDown], [css.fadeCarousel]];
       case '/shutters':
-        return [[css.backgroundDown], [], [css.fadeCarousel]];
+        return ['Raynesway Blinds - Shutters', 'Enhance your living spaces with Raynesway Blinds\' exquisite Shutters collection. Elevate your home\'s aesthetics ' +
+          'and functionality with our premium shutter designs, meticulously crafted for durability and style.', defaultRichResults, [css.backgroundDown], [css.fadeCarousel]];
       default:
-        return [[css.backgroundUp], [], []];
+        return ['Raynesway Blinds', 'Raynesway Blinds manufacture blinds, shutters and awnings using only the finest materials.  ' +
+          'We are also open 5 days a week and can visit to measure and quote on saturday by appointment for your convenience.', defaultRichResults, [css.backgroundUp], []];
     }
   }, [pathname]);
 
@@ -132,8 +140,13 @@ export const Content = createComponent('Content', () => {
         carouselClassName={join(css.carousel, ...carouselClasses)}
         showMessages={pathname.toLowerCase() === '/'}
       >
-        <Flex tagName="content" className={join(css.content, ...contentClasses)}>{content}</Flex>
+        <Flex tagName="content" className={css.content}>{content}</Flex>
       </Background>
+      <Helmet>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <script type="application/ld+json">{JSON.stringify(richResults)}</script>
+      </Helmet>
     </>
   );
 });

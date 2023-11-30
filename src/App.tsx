@@ -1,5 +1,5 @@
 import { createComponent, createRootThemeProvider } from '@anupheaus/react-ui';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { Content } from './Content';
 import { theme } from './theme';
 import { TitleBar } from './title-bar';
@@ -29,14 +29,8 @@ export const App = createComponent('App', () => {
   return (
     <GlobalTheme>
       <BrowserRouter>
-        <Routes>
-          <Route path="*" element={(
-            <>
-              <TitleBar />
-              <Content />
-            </>
-          )} />
-        </Routes>
+        <TitleBar />
+        <Content />
       </BrowserRouter>
     </GlobalTheme>
   );
