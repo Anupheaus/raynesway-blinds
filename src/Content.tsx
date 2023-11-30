@@ -127,7 +127,11 @@ export const Content = createComponent('Content', () => {
 
   return (
     <>
-      <Background className={join(css.background, ...backgroundClasses)} carouselClassName={join(css.carousel, ...carouselClasses)}>
+      <Background
+        className={join(css.background, ...backgroundClasses)}
+        carouselClassName={join(css.carousel, ...carouselClasses)}
+        showMessages={pathname.toLowerCase() === '/'}
+      >
         <Flex tagName="content" className={join(css.content, ...contentClasses)}>{content}</Flex>
       </Background>
     </>

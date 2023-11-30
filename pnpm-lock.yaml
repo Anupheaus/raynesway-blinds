@@ -5,8 +5,8 @@ dependencies:
     specifier: ^0.0.23
     version: 0.0.23
   '@anupheaus/react-ui':
-    specifier: ^0.0.19
-    version: 0.0.19(@types/react@18.2.39)(typescript@5.3.2)
+    specifier: ^0.0.20
+    version: 0.0.20(@types/react@18.2.39)(typescript@5.3.2)
   color:
     specifier: ^4.2.3
     version: 4.2.3
@@ -86,8 +86,8 @@ packages:
       uuid: 9.0.1
     dev: false
 
-  /@anupheaus/react-ui@0.0.19(@types/react@18.2.39)(typescript@5.3.2):
-    resolution: {integrity: sha512-PbO/IQfKMgRtDq44YenRzFedJY1esU+OQwg6BdlOBYNfjnoRLysXzZ5zpN7EYn/KJIox9vJF14YaXAPxl8esgQ==, tarball: https://npm.pkg.github.com/download/@anupheaus/react-ui/0.0.19/1a02fa1d3d1262c324a68c603c8c0a62f94bb018}
+  /@anupheaus/react-ui@0.0.20(@types/react@18.2.39)(typescript@5.3.2):
+    resolution: {integrity: sha512-LQJU8Zna+iPDsWf2I1H6geHko96zvZ52WNxOhJ0z3sWWZITVliIcNohne2bGlorOem+KNTH3/wlOkQq4ypuCBQ==, tarball: https://npm.pkg.github.com/download/@anupheaus/react-ui/0.0.20/982a14d349e96c79f0e35e4b1d39287954d66c44}
     dependencies:
       '@anupheaus/common': 0.0.23
       '@emotion/react': 11.11.1(@types/react@18.2.39)(react@18.2.0)

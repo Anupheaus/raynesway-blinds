@@ -36,4 +36,28 @@ export const Typography = TypographyComponent.augmentWith({
     size: 34,
     shadow: '0px 1px 3px rgba(0 0 0 / 30%)',
   },
+  'message-elegant': {
+    name: 'Niconne',
+    size: 106,
+    color: '#878994',
+    shadow: 'rgba(0, 0, 0, 0.4) 0px 4px 5px',
+  },
+  'message-anton': {
+    name: 'Anton',
+    size: 62,
+    color: '#878994',
+    shadow: 'rgba(0, 0, 0, 0.4) 0px 4px 5px',
+  },
+  'message-simple': {
+    name: 'Avenir',
+    size: 86,
+    color: '#878994',
+    shadow: 'rgba(0, 0, 0, 0.4) 0px 4px 5px',
+  },
+  'message-luxury': {
+    name: 'Playfair Display',
+    size: 86,
+    color: '#878994',
+    shadow: 'rgba(0, 0, 0, 0.4) 0px 4px 5px',
+  },
 });

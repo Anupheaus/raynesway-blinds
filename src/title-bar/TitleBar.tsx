@@ -116,7 +116,7 @@ export const TitleBar = createComponent('TitleBar', () => {
         </Link>
       </Flex>
       <Flex tagName={'title-bar-contact-details'} className={css.contactDetails}>
-        <Typography type={'website-title-telephone-number'}>01332 280585</Typography>
+        <Typography type={'website-title-telephone-number'}>03330 470585</Typography>
       </Flex>
     </Flex>
   );
