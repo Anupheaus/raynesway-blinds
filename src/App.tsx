@@ -7,7 +7,9 @@ import { TitleBar } from './title-bar';
 const GlobalTheme = createRootThemeProvider({
   globalStyles: {
     'html, body, root': {
+      position: 'relative',
       height: '100%',
+      width: '100%',
       padding: 0,
       margin: 0,
       fontFamily: 'Mulish, sans-serif',

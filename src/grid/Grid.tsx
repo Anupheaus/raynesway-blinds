@@ -39,6 +39,7 @@ export const Grid = createComponent('Grid', ({
     if (width == null) return;
     const updateWidthCallbacks = new Set<(newWidth: number) => void>();
     const elements = new Map<ReactElement<ComponentProps<typeof GridCell>>, CellSize>();
+    let lastCalculatedWidth = 0;
     let currentWidth = 0;
     let columns = 0;
 
@@ -49,6 +50,7 @@ export const Grid = createComponent('Grid', ({
       elements.set(element, { height: cellHeight, width: cellWidth });
       if (isTitle || (cellWidth + currentWidth + (gap * (columns - 1)) > width)) {
         const newColumnWidth = Math.floor((width - (gap * (columns - 1))) / columns);
+        lastCalculatedWidth = newColumnWidth;
         updateWidthCallbacks.forEach(callback => callback(newColumnWidth));
         columns = 0;
         currentWidth = 0;
@@ -64,9 +66,8 @@ export const Grid = createComponent('Grid', ({
     }
     if (columns > 0) {
       const newColumnWidth = Math.floor((width - (gap * (columns - 1))) / columns);
-      if (newColumnWidth < width / 2) {
-        updateWidthCallbacks.forEach(callback => callback(newColumnWidth));
-      }
+      if (lastCalculatedWidth === 0) lastCalculatedWidth = newColumnWidth;
+      updateWidthCallbacks.forEach(callback => callback(newColumnWidth < width / 2 ? newColumnWidth : lastCalculatedWidth));
     }
     return Array.from(elements.entries()).map(([element, { width: cellWidth }]) => cloneElement(element, { width: toPx(cellWidth) }));
   }, [children, hasDimensions, width, cellHeight, minCellWidth]);
