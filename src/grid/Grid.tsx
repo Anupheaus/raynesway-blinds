@@ -1,5 +1,5 @@
 import { createComponent, createStyles, Flex, useOnResize } from '@anupheaus/react-ui';
-import { Children, cloneElement, ComponentProps, isValidElement, ReactElement, ReactNode, useMemo } from 'react';
+import { Children, cloneElement, ComponentProps, isValidElement, ReactElement, useMemo } from 'react';
 import { GridCell } from './GridCell';
 
 const useStyles = createStyles({
