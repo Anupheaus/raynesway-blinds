@@ -39,7 +39,7 @@ export const Media = createComponent('Media', ({
       case 'mp4':
         return <video src={src} className={css.img} autoPlay muted loop={isLooped} />;
       default:
-        return <img src={src} className={css.img} />;
+        return <img src={src} className={css.img} loading={'lazy'} />;
     }
   }, [src, extension]);
 
