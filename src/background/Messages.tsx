@@ -60,7 +60,7 @@ export const Messages = createComponent('Messages', ({
     switch (index) {
       case 0: return groupMessages(<>
         <Message fontType="message-elegant" slide="down">Fine Blinds for</Message>
-        <Message fontType="message-anton" fontSize={84} slide="down" delayMS={1500}>A STUNNING HOME</Message>
+        <Message fontType="message-anton" slide="down" delayMS={1500}>A STUNNING HOME</Message>
       </>, { align: 'right' });
       case 1: return groupMessages(<>
         <Message fontType="message-simple" paddingRight={120} fontWeight="bold" slide='left'>With professional and</Message>
@@ -77,11 +77,11 @@ export const Messages = createComponent('Messages', ({
         <Message fontType="message-luxury" color="white" paddingLeft={200} slide="right" delayMS={1000}>Home Office</Message>
       </>);
       case 4: return groupMessages(<>
-        <Message fontType="message-elegant" fontSize={62} slide="down">Economical and Efficient</Message>
+        <Message fontType="message-elegant" slide="down">Economical and Efficient</Message>
         <Message fontType="message-anton" slide='left' delayMS={1000}>BLIND REPAIRS</Message>
       </>, { align: 'left' });
       case 5: return groupMessages(<>
-        <Message fontType="message-elegant" color="white" fontSize={62} slide="down">Elegant and Affordable</Message>
+        <Message fontType="message-elegant" color="white" slide="down">Elegant and Affordable</Message>
         <Message fontType="message-anton" color="white" slide="right" delayMS={1000}>CANOPIES AND AWNINGS</Message>
       </>, { align: 'right' });
       default: return null;

@@ -1,6 +1,7 @@
 import { Carousel, createComponent, createStyles, Flex } from '@anupheaus/react-ui';
 import { ReactNode, useState } from 'react';
 import { Messages } from './Messages';
+import { theme } from '../theme';
 
 const imageURLs = [
   './images/first-image.webp',
@@ -27,6 +28,11 @@ const useStyles = createStyles({
     transitionProperty: 'opacity',
     transitionDuration: '1s',
     transitionTimingFunction: 'ease-in-out',
+    overflow: 'hidden',
+
+    [theme.mediaMaxWidth]: {
+      top: 320,
+    },
   },
   areMessagesVisible: {
     opacity: 1,

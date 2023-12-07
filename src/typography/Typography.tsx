@@ -38,24 +38,24 @@ export const Typography = TypographyComponent.augmentWith({
   },
   'message-elegant': {
     name: 'Niconne',
-    size: 106,
+    size: '7vw',
     color: '#878994',
     shadow: 'rgba(0, 0, 0, 0.4) 0px 4px 5px',
   },
   'message-anton': {
     name: 'Anton',
-    size: 62,
+    size: '7vw',
     color: '#878994',
     shadow: 'rgba(0, 0, 0, 0.4) 0px 4px 5px',
   },
   'message-simple': {
-    size: 86,
+    size: '7vw',
     color: '#878994',
     shadow: 'rgba(0, 0, 0, 0.4) 0px 4px 5px',
   },
   'message-luxury': {
     name: 'Playfair Display',
-    size: 86,
+    size: '7vw',
     color: '#878994',
     shadow: 'rgba(0, 0, 0, 0.4) 0px 4px 5px',
   },

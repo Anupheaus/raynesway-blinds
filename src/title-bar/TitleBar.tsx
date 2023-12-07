@@ -14,6 +14,13 @@ const useStyles = createStyles({
     height: 200,
     overflow: 'hidden',
     zIndex: 1,
+    justifyContent: 'center',
+
+    [theme.mediaMaxWidth]: {
+      height: 350,
+      flexDirection: 'column',
+      justifyContent: 'flex-start',
+    },
   },
   background: {
     position: 'absolute',
@@ -26,16 +33,28 @@ const useStyles = createStyles({
     backgroundColor: theme.background.primary,
     boxShadow: '0 0 6px 6px rgba(0 0 0 / 50%)',
     zIndex: -1,
+    [theme.mediaMaxWidth]: {
+      height: 680,
+    },
   },
   menu: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
-    height: 200,
+    height: 170,
     zIndex: -2,
     width: '100%',
     justifyContent: 'space-evenly',
+    alignItems: 'flex-end',
+
+    [theme.mediaMaxWidth]: {
+      height: 310,
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'flex-end',
+      gap: 8,
+    },
   },
   menuBackground: {
     position: 'absolute',
@@ -47,10 +66,11 @@ const useStyles = createStyles({
     backgroundColor: Color(theme.background.primary).darken(0.2).hex(),
     boxShadow: '0 0 10px 10px rgba(0 0 0 / 30%)',
     zIndex: -1,
+    [theme.mediaMaxWidth]: {
+      height: 770,
+    },
   },
-  menuItem: {
-    paddingTop: 144,
-  },
+  menuItem: {},
   menuItemLink: {
     textDecoration: 'none',
     color: 'inherit',
@@ -68,6 +88,8 @@ const useStyles = createStyles({
     textShadow: '0px 4px 5px rgba(0 0 0 / 40%)',
     pointerEvents: 'all',
     cursor: 'pointer',
+    textAlign: 'center',
+    flexGrow: 0,
   },
   titleContainer: {
     pointerEvents: 'none',
@@ -83,12 +105,31 @@ const useStyles = createStyles({
     top: 10,
     right: 10,
     bottom: 10,
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+
+    [theme.mediaMaxWidth]: {
+      position: 'relative',
+      flexGrow: 1,
+      flexDirection: 'row',
+      width: '100%',
+      justifyContent: 'center',
+    },
   },
   socialLinks: {
     paddingRight: 6,
+    justifyContent: 'flex-end',
+
+    [theme.mediaMaxWidth]: {
+      position: 'absolute',
+      top: -54,
+      right: 0,
+      flexDirection: 'column',
+    },
   },
   link: {
     cursor: 'pointer',
+    height: 'min-content',
   },
   nextdoor: {
     marginLeft: -2,
@@ -108,7 +149,7 @@ export const TitleBar = createComponent('TitleBar', () => {
   });
 
   return (
-    <Flex tagName="title-bar" className={css.titleBar} align="center">
+    <Flex tagName="title-bar" className={css.titleBar}>
       <Flex tagName="title-bar-background" className={css.background} />
       <Flex tagName="title-bar-menu" className={css.menu}>
         <Flex tagName="title-bar-background-menu" className={css.menuBackground} />
@@ -136,10 +177,10 @@ export const TitleBar = createComponent('TitleBar', () => {
       <Flex tagName="title-bar-title" isVertical gap={4} disableGrow align={'center'} className={css.titleContainer}>
         <Link to="/" className={css.menuItemLink}>
           <img src="/images/logo.png" alt="Raynesway Blinds Logo" width={80} height={80} className={css.logo} />
-          <Typography type="website-title" className={css.title}>~ RAYNESWAY BLINDS ~</Typography>
+          <Typography type="website-title" className={css.title}>RAYNESWAY BLINDS</Typography>
         </Link>
       </Flex>
-      <Flex tagName="title-bar-contact-details" isVertical className={css.contactDetails} gap={8} align="right" height="min-content">
+      <Flex tagName="title-bar-contact-details" className={css.contactDetails} gap={8} height="min-content">
         <a href="tel:+443330470585" className={css.link}>
           <Tooltip content="Call us on 03330 470585">
             <Typography type={'website-title-telephone-number'} className={css.link}>0333 047 0585</Typography>

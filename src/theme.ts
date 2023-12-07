@@ -33,4 +33,5 @@ export const theme = {
       },
     },
   },
+  mediaMaxWidth: '@media (max-width: 600px)',
 };

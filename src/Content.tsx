@@ -9,6 +9,7 @@ import { Shutters } from './shutters';
 import { Helmet } from 'react-helmet';
 import defaultRichResults from './rich-results/default.json';
 import { About } from './about';
+import { theme } from './theme';
 
 const useStyles = createStyles({
   background: {
@@ -61,6 +62,11 @@ const useStyles = createStyles({
     transitionProperty: 'top, left, right, bottom, opacity',
     transitionDuration: '1s',
     transitionTimingFunction: 'ease-in-out',
+    overflow: 'hidden',
+
+    [theme.mediaMaxWidth]: {
+      top: 430,
+    }
   },
   contentContainer: {
     position: 'absolute',
