@@ -7,7 +7,7 @@ export const theme = {
     secondary: '#878994',
   },
   shadows: {
-    light: '',
+    light: '0 1px 2px rgba(0 0 0 / 15%), 0 3px 6px rgba(0 0 0 / 12%)',
     medium: '0 1px 3px rgba(0 0 0 / 30%), 0 6px 12px rgba(0 0 0 / 24%)',
     heavy: '',
   },

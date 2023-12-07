@@ -8,6 +8,7 @@ import { Blinds } from './blinds';
 import { Shutters } from './shutters';
 import { Helmet } from 'react-helmet';
 import defaultRichResults from './rich-results/default.json';
+import { About } from './about';
 
 const useStyles = createStyles({
   background: {
@@ -20,11 +21,19 @@ const useStyles = createStyles({
     transitionDuration: '1s',
     transitionTimingFunction: 'ease-in-out',
   },
-  backgroundLeft: {
+  backgroundBlinds: {
     left: 0,
     right: -200,
   },
-  backgroundRight: {
+  backgroundShutters: {
+    left: -67,
+    right: -134,
+  },
+  backgroundAwnings: {
+    left: -134,
+    right: -67,
+  },
+  backgroundAbout: {
     left: -200,
     right: 0,
   },
@@ -75,10 +84,14 @@ const useStyles = createStyles({
     right: 200,
   },
   shutters: {
-    left: 100,
-    right: 100,
+    left: 67,
+    right: 134,
   },
   awnings: {
+    left: 134,
+    right: 67,
+  },
+  about: {
     left: 200,
     right: 0,
   },
@@ -96,14 +109,16 @@ export const Content = createComponent('Content', () => {
       case '/blinds':
         return ['Raynesway Blinds - Blinds', 'Discover the perfect window solutions with Raynesway Blinds! Explore our exquisite collection ' +
           'of blinds, meticulously crafted to elevate your space.  From stylish designs to customizable options, find the ideal window treatments ' +
-          'for every room.', defaultRichResults, [css.backgroundLeft, css.backgroundDown], [css.fadeCarousel]];
+          'for every room.', defaultRichResults, [css.backgroundDown, css.backgroundBlinds], [css.fadeCarousel]];
+      case '/shutters':
+        return ['Raynesway Blinds - Shutters', 'Enhance your living spaces with Raynesway Blinds\' exquisite Shutters collection. Elevate your home\'s aesthetics ' +
+          'and functionality with our premium shutter designs, meticulously crafted for durability and style.', defaultRichResults, [css.backgroundDown, css.backgroundShutters], [css.fadeCarousel]];
       case '/awnings':
         return ['Raynesway Blinds - Awnings', 'Elevate your outdoor living with Raynesway Blinds\' awnings! Explore our premium range of stylish and durable ' +
           'awnings, designed to enhance your space while providing shade and comfort. From sleek modern designs to classic styles, Raynesway Blinds\' awnings ' +
-          'offers a perfect blend of form and function for your patio or deck.', defaultRichResults, [css.backgroundRight, css.backgroundDown], [css.fadeCarousel]];
-      case '/shutters':
-        return ['Raynesway Blinds - Shutters', 'Enhance your living spaces with Raynesway Blinds\' exquisite Shutters collection. Elevate your home\'s aesthetics ' +
-          'and functionality with our premium shutter designs, meticulously crafted for durability and style.', defaultRichResults, [css.backgroundDown], [css.fadeCarousel]];
+          'offers a perfect blend of form and function for your patio or deck.', defaultRichResults, [css.backgroundDown, css.backgroundAwnings], [css.fadeCarousel]];
+      case '/about':
+        return ['Raynesway Blinds - About', '', defaultRichResults, [css.backgroundDown, css.backgroundAbout], [css.fadeCarousel]];
       default:
         return ['Raynesway Blinds', 'Raynesway Blinds manufacture blinds, shutters and awnings using only the finest materials.  ' +
           'We are also open 5 days a week and can visit to measure and quote on saturday by appointment for your convenience.', defaultRichResults, [css.backgroundUp], []];
@@ -127,6 +142,7 @@ export const Content = createComponent('Content', () => {
     createContent('blinds', () => <Blinds className={join(css.innerContent, css.blinds)} />),
     createContent('shutters', () => <Shutters className={join(css.innerContent, css.shutters)} />),
     createContent('awnings', () => <Awnings className={join(css.innerContent, css.awnings)} />),
+    createContent('about', () => <About className={join(css.innerContent, css.about)} />),
   ], [pathname, hasRendered.size]);
 
   useEffect(() => {

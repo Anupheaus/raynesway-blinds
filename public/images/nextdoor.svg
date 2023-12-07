@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" id="nextdoor">
+  <path fill="currentcolor" fill-rule="evenodd" 
+    d="M1.5 4.5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2a.5.5 0 0 0 .393.488A8 8 0 0 1 22.5 11.5v8a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-8a2 2 0 1 0-4 0v8a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V12H6a4.5 4.5 0 0 1-4.5-4.5v-3Zm2 1v2A2.5 2.5 0 0 0 6 10h1.518a1 1 0 0 1 .997 1.07c-.01.142-.015.285-.015.43v7h2v-7a4 4 0 0 1 8 0v7h2v-7a6 6 0 0 0-11.198-3 1 1 0 0 1-.866.5H8a2.5 2.5 0 0 1-2.5-2.5v-1h-2Z" clip-rule="evenodd">
+  </path>
+</svg>

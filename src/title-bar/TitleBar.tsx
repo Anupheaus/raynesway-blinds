@@ -90,6 +90,9 @@ const useStyles = createStyles({
   link: {
     cursor: 'pointer',
   },
+  nextdoor: {
+    marginLeft: -2,
+  },
 });
 
 export const TitleBar = createComponent('TitleBar', () => {
@@ -100,6 +103,7 @@ export const TitleBar = createComponent('TitleBar', () => {
       case 'twitter': window.open('https://twitter.com/rayneswayblinds', '_blank'); break;
       case 'facebook': window.open('https://www.facebook.com/rayneswayblinds', '_blank'); break;
       case 'instagram': window.open('https://www.instagram.com/rayneswayblinds', '_blank'); break;
+      case 'nextdoor': window.open('https://nextdoor.co.uk/pages/raynesway-blinds-derby-england', '_blank'); break;
     }
   });
 
@@ -123,6 +127,11 @@ export const TitleBar = createComponent('TitleBar', () => {
             <Typography type="website-title-menu-item" className={css.menuItemContent}>Awnings</Typography>
           </Link>
         </Flex>
+        <Flex tagName="website-title-menu-item" className={css.menuItem} align="center" disableGrow>
+          <Link to="/about" className={css.menuItemLink}>
+            <Typography type="website-title-menu-item" className={css.menuItemContent}>About</Typography>
+          </Link>
+        </Flex>
       </Flex>
       <Flex tagName="title-bar-title" isVertical gap={4} disableGrow align={'center'} className={css.titleContainer}>
         <Link to="/" className={css.menuItemLink}>
@@ -133,7 +142,7 @@ export const TitleBar = createComponent('TitleBar', () => {
       <Flex tagName="title-bar-contact-details" isVertical className={css.contactDetails} gap={8} align="right" height="min-content">
         <a href="tel:+443330470585" className={css.link}>
           <Tooltip content="Call us on 03330 470585">
-            <Typography type={'website-title-telephone-number'} className={css.link}>03330 470585</Typography>
+            <Typography type={'website-title-telephone-number'} className={css.link}>0333 047 0585</Typography>
           </Tooltip>
         </a>
         <Flex tagName="title-bar-social-links" gap={8} className={css.socialLinks}>
@@ -146,6 +155,9 @@ export const TitleBar = createComponent('TitleBar', () => {
           <Tooltip content="View our Instagram feed">
             <Icon name="instagram" color={theme.text.secondary} className={css.link} onClick={visit('instagram')} />
           </Tooltip>
+          {/* <Tooltip content="View our Nextdoor page">
+            <Icon name="nextdoor" color={theme.text.secondary} className={join(css.link, css.nextdoor)} onClick={visit('nextdoor')} />
+          </Tooltip> */}
         </Flex>
       </Flex>
     </Flex>
