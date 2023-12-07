@@ -11,15 +11,20 @@ const useStyles = createStyles({
     overflowY: 'auto',
     ...theme.scrollbars.styling,
   },
-  box: {
+  section: {
     maxWidth: '40%',
     minWidth: 300,
-    borderRadius: 4,
     width: '100%',
+  },
+  box: {
+    borderRadius: 4,
     border: `1px solid ${theme.text.secondary}`,
     backgroundColor: Color(theme.background.primary).alpha(0.5).hexa().toString(),
     padding: 16,
     boxShadow: theme.shadows.medium,
+  },
+  titleBox: {
+    backgroundColor: 'rgb(255 255 255 / 50%)',
   },
   productBubble: {
     border: `1px solid ${theme.text.secondary}`,
@@ -53,11 +58,11 @@ export const About = createComponent('About', ({
 
   return (
     <Flex tagName="about" className={join(css.about, className)} align="center" isVertical gap={32}>
-      <Flex tagName="about-main" isVertical gap={32} className={css.box}>
-        <Flex tagName="about-content-title" isVertical gap={16} align="center">
-          <Typography type="heading">Raynesway Blinds</Typography>
+      <Flex tagName="about-main" isVertical gap={16} className={css.section}>
+        <Flex tagName="about-content-title" isVertical align="center" className={join(css.box, css.titleBox)}>
+          <Typography type="heading">Our History</Typography>
         </Flex>
-        <Flex tagName="about-content-body" isVertical gap={16}>
+        <Flex tagName="about-content-body" isVertical gap={16} className={css.box}>
           <Typography type="paragraph">
             Formerly known as Raynesway Interiors, which supplied and fitted blinds, shutters and awnings for over 30 years in the Derby area, the company
             is now under new ownership and has been rebranded as Raynesway Blinds.
@@ -67,11 +72,11 @@ export const About = createComponent('About', ({
           </Typography>
         </Flex>
       </Flex>
-      <Flex tagName="about-main" isVertical gap={32} className={css.box}>
-        <Flex tagName="about-content-title" isVertical gap={16} align="center">
+      <Flex tagName="about-main" isVertical gap={16} className={css.section}>
+        <Flex tagName="about-content-title" isVertical align="center" className={join(css.box, css.titleBox)}>
           <Typography type="heading">Our Products</Typography>
         </Flex>
-        <Flex tagName="about-content-body" isVertical gap={16}>
+        <Flex tagName="about-content-body" isVertical gap={16} className={css.box}>
           <Typography type="paragraph">
             We have a wide range of products available, including:
           </Typography>
@@ -88,11 +93,11 @@ export const About = createComponent('About', ({
           </Flex>
         </Flex>
       </Flex>
-      <Flex tagName="about-main" isVertical gap={32} className={css.box}>
-        <Flex tagName="about-content-title" isVertical gap={16} align="center">
+      <Flex tagName="about-main" isVertical gap={16} className={css.section}>
+        <Flex tagName="about-content-title" isVertical align="center" className={join(css.box, css.titleBox)}>
           <Typography type="heading">Our Contact Information</Typography>
         </Flex>
-        <Flex tagName="about-content-body" isVertical gap={16}>
+        <Flex tagName="about-content-body" isVertical gap={16} className={css.box}>
           <Flex gap={6}><Icon name="address" /><Typography type="paragraph">Unit 5, 227 Derby Road, Chaddesden, Derby, DE21 6SY</Typography></Flex>
           <Flex gap={6}>
             <Icon name="email" />
