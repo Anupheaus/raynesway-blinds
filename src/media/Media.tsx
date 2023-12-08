@@ -20,12 +20,14 @@ const useStyles = createStyles({
 
 interface Props extends ComponentProps<typeof Flex> {
   src: string;
+  thumbnail?: string;
   dropShadow?: boolean;
   isLooped?: boolean;
 }
 
 export const Media = createComponent('Media', ({
   src,
+  thumbnail,
   dropShadow = false,
   isLooped = false,
   ...props
@@ -37,7 +39,7 @@ export const Media = createComponent('Media', ({
   const content = useMemo(() => {
     switch (extension) {
       case 'mp4':
-        return <video src={src} className={css.img} autoPlay muted loop={isLooped} />;
+        return <video src={src} className={css.img} autoPlay muted loop={isLooped} poster={thumbnail} />;
       default:
         return <img src={src} className={css.img} loading={'lazy'} />;
     }

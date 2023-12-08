@@ -52,6 +52,7 @@ interface MediaAndTextProps {
   type: 'mediaAndText';
   title: ReactNode;
   mediaSrc: string;
+  mediaThumbnail?: string;
   span?: number;
   children: ReactNode;
 }
@@ -78,7 +79,7 @@ export const GridCell = createComponent('GridCell', (props: Props) => {
       case 'mediaAndText':
         return (
           <Flex tagName="grid-cell-media-and-text" isVertical className={css.gridCellMediaAndText}>
-            <Media src={props.mediaSrc} />
+            <Media src={props.mediaSrc} thumbnail={props.mediaThumbnail} />
             <Typography type="heading" className={css.mediaAndTextTitle}>{title}</Typography>
             <Typography type="paragraph" className={css.mediaAndTextParagraph}>{children}</Typography>
           </Flex>

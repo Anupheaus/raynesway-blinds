@@ -37,7 +37,7 @@ export const Blinds = createComponent('Blinds', ({
           Enjoy your personal space without compromising on natural light. Venetian blinds offer an unparalleled level of
           privacy, making them an ideal choice for bedrooms, bathrooms, and offices.
         </GridCell>
-        <GridCell type="mediaAndText" title="Fully Bespoke" mediaSrc="/videos/venetians-1.mp4">
+        <GridCell type="mediaAndText" title="Fully Bespoke" mediaSrc="/videos/venetians-1.mp4" mediaThumbnail="/videos/venetians-1-thumbnail.mp4">
           Tailor your blinds to your exact specifications. Choose from various slat sizes, materials, and control options to create a window treatment that reflects your unique style.
         </GridCell>
         <GridCell type="mediaAndText" title="Light and Energy Control" mediaSrc="/images/venetians-3.jpg">
@@ -55,7 +55,7 @@ export const Blinds = createComponent('Blinds', ({
           you prefer minimalistic or bold aesthetics, our diverse range of fabrics and designs ensures you find the perfect
           match for your space.
         </GridCell>
-        <GridCell type="mediaAndText" title="Durability and Easy Maintenance" mediaSrc="/videos/rollers-1.mp4">
+        <GridCell type="mediaAndText" title="Durability and Easy Maintenance" mediaSrc="/videos/rollers-1.mp4" mediaThumbnail="/videos/rollers-1-thumbnail.mp4">
           Crafted from high-quality materials, our roller blinds are built to withstand the test of time. Enjoy hassle-free
           maintenance with fabrics that are easy to clean, ensuring your blinds look as stunning as the day they were installed.
         </GridCell>
@@ -112,7 +112,7 @@ export const Blinds = createComponent('Blinds', ({
           Experience the best of both worlds! Night and Day Blinds feature alternating opaque and sheer stripes that allow you to
           effortlessly switch between privacy and natural light. Enjoy a cozy, private atmosphere or bask in the warmth of sunlight, all with a single adjustment.
         </GridCell>
-        <GridCell type="mediaAndText" title="Highly Customisable" mediaSrc="/videos/night-and-day-1.mp4">
+        <GridCell type="mediaAndText" title="Highly Customisable" mediaSrc="/videos/night-and-day-1.mp4" mediaThumbnail="/videos/night-and-day-1-thumbail.mp4">
           Express your individual style with a range of colors and patterns to choose from. Our Night and Day Blinds can be customised
           to complement your interior decor, creating a harmonious and cohesive look throughout your space.
         </GridCell>
