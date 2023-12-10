@@ -107,6 +107,7 @@ const useStyles = createStyles({
     bottom: 10,
     flexDirection: 'column',
     justifyContent: 'flex-end',
+    pointerEvents: 'none',
 
     [theme.mediaMaxWidth]: {
       position: 'relative',
@@ -130,6 +131,7 @@ const useStyles = createStyles({
   link: {
     cursor: 'pointer',
     height: 'min-content',
+    pointerEvents: 'all',
   },
   nextdoor: {
     marginLeft: -2,
