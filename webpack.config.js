@@ -48,6 +48,7 @@ module.exports = (env, argv) => {
         inject: 'head',
         xhtml: true,
         cache: false,
+        hash: true,
       }),
       new ProgressPlugin(),
     ],
