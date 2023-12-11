@@ -79,6 +79,8 @@ const useStyles = createStyles({
     display: 'inline-flex',
     flex: 'inherit',
     flexDirection: 'inherit',
+    flexGrow: 0,
+    width: 'min-content',
   },
   menuItemContent: {
     cursor: 'pointer',
