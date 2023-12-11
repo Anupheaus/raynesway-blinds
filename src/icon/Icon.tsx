@@ -1,5 +1,5 @@
 import { Icon as IconComponent, createComponent, createStyles } from '@anupheaus/react-ui';
-import { FiFacebook, FiInstagram, FiMail, FiMapPin, FiPhoneCall, FiTwitter } from 'react-icons/fi';
+import { FiFacebook, FiInstagram, FiMail, FiMapPin, FiPhoneCall, FiTwitter, FiX } from 'react-icons/fi';
 import { ReactSVG } from 'react-svg';
 import { theme } from '../theme';
 import { useMemo } from 'react';
@@ -44,4 +44,5 @@ export const Icon = IconComponent.augmentWith({
   'address': FiMapPin,
   'email': FiMail,
   'telephone': FiPhoneCall,
+  'close': FiX,
 });

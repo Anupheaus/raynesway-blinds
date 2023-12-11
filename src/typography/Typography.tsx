@@ -59,4 +59,7 @@ export const Typography = TypographyComponent.augmentWith({
     color: '#878994',
     shadow: 'rgba(0, 0, 0, 0.4) 0px 4px 5px',
   },
+  'cookie-consent': {
+    color: 'white',
+  },
 });

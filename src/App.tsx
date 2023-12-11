@@ -3,6 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Content } from './Content';
 import { theme } from './theme';
 import { TitleBar } from './title-bar';
+import { CookieConsent } from './cookie-consent';
 
 const GlobalTheme = createRootThemeProvider({
   globalStyles: {
@@ -33,6 +34,7 @@ export const App = createComponent('App', () => {
       <BrowserRouter>
         <TitleBar />
         <Content />
+        <CookieConsent />
       </BrowserRouter>
     </GlobalTheme>
   );
