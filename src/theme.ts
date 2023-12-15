@@ -34,4 +34,16 @@ export const theme = {
     },
   },
   mediaMaxWidth: '@media (max-width: 600px)',
+  positioning: {
+    desktop: {
+      titleBarAreaHeight: 150,
+      menuAreaHeight: 50,
+      subMenuAreaHeight: 50,
+    },
+    mobile: {
+      titleBarAreaHeight: 130,
+      menuAreaHeight: (34 * 5),
+      subMenuAreaHeight: (34 * 5),
+    },
+  },
 };

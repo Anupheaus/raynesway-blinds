@@ -1,9 +1,12 @@
-import { createComponent, createStyles, Flex, Tooltip, useDelegatedBound } from '@anupheaus/react-ui';
+import { createComponent, createStyles, Flex, Tooltip, useDelegatedBound, useForceUpdate } from '@anupheaus/react-ui';
 import { theme } from '../theme';
 import { Typography } from '../typography';
 import Color from 'color';
 import { Link } from 'react-router-dom';
 import { Icon } from '../icon';
+import { useEffect, useMemo, useRef } from 'react';
+import { pages } from '../pages';
+import { useSubMenu } from '../sub-menu-provider';
 
 const useStyles = createStyles({
   titleBar: {
@@ -11,13 +14,11 @@ const useStyles = createStyles({
     top: 0,
     left: 0,
     right: 0,
-    height: 200,
-    overflow: 'hidden',
+    height: 'calc(var(--title-area-height) + var(--menu-area-height) + var(--sub-menu-area-height) + 25px)',
     zIndex: 1,
     justifyContent: 'center',
 
     [theme.mediaMaxWidth]: {
-      height: 350,
       flexDirection: 'column',
       justifyContent: 'flex-start',
     },
@@ -27,48 +28,75 @@ const useStyles = createStyles({
     top: -500,
     left: -1000,
     right: -1000,
-    height: 630,
+    height: 'calc(var(--title-area-height) + 500px)',
     opacity: 0.4,
     borderRadius: '50%',
     backgroundColor: theme.background.primary,
     boxShadow: '0 0 6px 6px rgba(0 0 0 / 50%)',
     zIndex: -1,
-    [theme.mediaMaxWidth]: {
-      height: 680,
-    },
   },
   menu: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
-    height: 170,
+    height: 'calc(var(--title-area-height) + var(--menu-area-height))',
     zIndex: -2,
     width: '100%',
     justifyContent: 'space-evenly',
     alignItems: 'flex-end',
+    paddingBottom: 12,
+    boxSizing: 'border-box',
 
     [theme.mediaMaxWidth]: {
-      height: 310,
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'flex-end',
       gap: 8,
     },
   },
+  subMenuContainer: {
+    position: 'absolute',
+    inset: 0,
+    top: 'calc(var(--title-area-height) + var(--menu-area-height))',
+    height: 'calc(var(--sub-menu-area-height) + 25px)',
+    zIndex: -3,
+    overflow: 'hidden',
+  },
+  subMenu: {
+    position: 'absolute',
+    inset: 0,
+    top: 'calc(0px - var(--sub-menu-area-height) - 10px)',
+    height: 'var(--sub-menu-area-height)',
+    transitionProperty: 'top',
+    transitionDuration: '1s',
+    transitionTimingFunction: 'ease-in-out',
+    width: '100%',
+    justifyContent: 'space-evenly',
+    alignItems: 'flex-end',
+    paddingBottom: 12,
+    boxSizing: 'border-box',
+
+    [theme.mediaMaxWidth]: {
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'flex-end',
+      gap: 8,
+    },
+  },
+  subMenuIsVisible: {
+    top: 0,
+  },
   menuBackground: {
     position: 'absolute',
-    top: -450,
-    left: -1000,
-    right: -1000,
-    height: 630,
+    top: 0,
+    left: -100,
+    right: -100,
+    height: '100%',
     opacity: 0.8,
     backgroundColor: Color(theme.background.primary).darken(0.2).hex(),
     boxShadow: '0 0 10px 10px rgba(0 0 0 / 30%)',
     zIndex: -1,
-    [theme.mediaMaxWidth]: {
-      height: 770,
-    },
   },
   menuItem: {},
   menuItemLink: {
@@ -84,6 +112,12 @@ const useStyles = createStyles({
   },
   menuItemContent: {
     cursor: 'pointer',
+    whiteSpace: 'nowrap',
+    textAlign: 'center',
+
+    [theme.mediaMaxWidth]: {
+      whiteSpace: 'normal',
+    },
   },
   title: {
     letterSpacing: 14,
@@ -95,6 +129,12 @@ const useStyles = createStyles({
   },
   titleContainer: {
     pointerEvents: 'none',
+  },
+  titleLink: {
+    [theme.mediaMaxWidth]: {
+      flexDirection: 'row',
+      gap: 8,
+    },
   },
   logo: {
     opacity: 0.9,
@@ -125,7 +165,7 @@ const useStyles = createStyles({
 
     [theme.mediaMaxWidth]: {
       position: 'absolute',
-      top: -54,
+      top: -84,
       right: 0,
       flexDirection: 'column',
     },
@@ -137,49 +177,65 @@ const useStyles = createStyles({
   },
   nextdoor: {
     marginLeft: -2,
+    marginTop: -2,
   },
 });
 
 export const TitleBar = createComponent('TitleBar', () => {
-  const { css } = useStyles();
+  const { css, join } = useStyles();
+  const subMenuOptions = useSubMenu();
+  const currentSubMenuOptionsRef = useRef(subMenuOptions);
+  const hideSubMenu = !Reflect.areDeepEqual(subMenuOptions, currentSubMenuOptionsRef.current) && currentSubMenuOptionsRef.current.length > 0;
+  if (currentSubMenuOptionsRef.current.length === 0 && subMenuOptions.length > 0) currentSubMenuOptionsRef.current = subMenuOptions;
+  const update = useForceUpdate();
 
   const visit = useDelegatedBound((page: string) => () => {
     switch (page) {
       case 'twitter': window.open('https://twitter.com/rayneswayblinds', '_blank'); break;
       case 'facebook': window.open('https://www.facebook.com/rayneswayblinds', '_blank'); break;
       case 'instagram': window.open('https://www.instagram.com/rayneswayblinds', '_blank'); break;
-      case 'nextdoor': window.open('https://nextdoor.co.uk/pages/raynesway-blinds-derby-england', '_blank'); break;
+      case 'nextdoor': window.open('https://nextdoor.co.uk/pages/raynesway-blinds', '_blank'); break;
     }
   });
+
+  const menuItems = useMemo(() => pages.filter(({ isDefault }) => !isDefault).map(({ path, label }) => (
+    <Flex key={path} tagName="website-title-menu-item" className={css.menuItem} align="center" disableGrow>
+      <Link to={path} className={css.menuItemLink}>
+        <Typography type="website-title-menu-item" className={css.menuItemContent}>{label}</Typography>
+      </Link>
+    </Flex>
+  )), []);
+
+  const subMenuItems = useMemo(() => currentSubMenuOptionsRef.current.map(({ path, label }) => (
+    <Flex key={path} tagName="website-title-menu-item" className={css.menuItem} align="center" disableGrow>
+      <Link to={path} className={css.menuItemLink}>
+        <Typography type="website-title-menu-item" className={css.menuItemContent}>{label}</Typography>
+      </Link>
+    </Flex>
+  )), [currentSubMenuOptionsRef.current]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      currentSubMenuOptionsRef.current = subMenuOptions;
+      update();
+    }, 1000);
+  }, [subMenuOptions]);
 
   return (
     <Flex tagName="title-bar" className={css.titleBar}>
       <Flex tagName="title-bar-background" className={css.background} />
       <Flex tagName="title-bar-menu" className={css.menu}>
         <Flex tagName="title-bar-background-menu" className={css.menuBackground} />
-        <Flex tagName="website-title-menu-item" className={css.menuItem} align="center" disableGrow>
-          <Link to="/blinds" className={css.menuItemLink}>
-            <Typography type={'website-title-menu-item'} className={css.menuItemContent}>Blinds</Typography>
-          </Link>
-        </Flex>
-        <Flex tagName="website-title-menu-item" className={css.menuItem} align="center" disableGrow>
-          <Link to="/shutters" className={css.menuItemLink}>
-            <Typography type="website-title-menu-item" className={css.menuItemContent}>Shutters</Typography>
-          </Link>
-        </Flex>
-        <Flex tagName="website-title-menu-item" className={css.menuItem} align="center" disableGrow>
-          <Link to="/awnings" className={css.menuItemLink}>
-            <Typography type="website-title-menu-item" className={css.menuItemContent}>Awnings</Typography>
-          </Link>
-        </Flex>
-        <Flex tagName="website-title-menu-item" className={css.menuItem} align="center" disableGrow>
-          <Link to="/about" className={css.menuItemLink}>
-            <Typography type="website-title-menu-item" className={css.menuItemContent}>About</Typography>
-          </Link>
+        {menuItems}
+      </Flex>
+      <Flex tagName="title-bar-sub-menu" className={css.subMenuContainer}>
+        <Flex tagName="title-bar-sub-menu" className={join(css.subMenu, !hideSubMenu && currentSubMenuOptionsRef.current.length > 0 && css.subMenuIsVisible)}>
+          <Flex tagName="title-bar-background-sub-menu" className={css.menuBackground} />
+          {subMenuItems}
         </Flex>
       </Flex>
       <Flex tagName="title-bar-title" isVertical gap={4} disableGrow align={'center'} className={css.titleContainer}>
-        <Link to="/" className={css.menuItemLink}>
+        <Link to="/" className={join(css.menuItemLink, css.titleLink)}>
           <img src="/images/logo.png" alt="Raynesway Blinds Logo" width={80} height={80} className={css.logo} />
           <Typography type="website-title" className={css.title}>RAYNESWAY BLINDS</Typography>
         </Link>
@@ -200,9 +256,9 @@ export const TitleBar = createComponent('TitleBar', () => {
           <Tooltip content="View our Instagram feed">
             <Icon name="instagram" color={theme.text.secondary} className={css.link} onClick={visit('instagram')} />
           </Tooltip>
-          {/* <Tooltip content="View our Nextdoor page">
+          <Tooltip content="Visit our Nextdoor page">
             <Icon name="nextdoor" color={theme.text.secondary} className={join(css.link, css.nextdoor)} onClick={visit('nextdoor')} />
-          </Tooltip> */}
+          </Tooltip>
         </Flex>
       </Flex>
     </Flex>

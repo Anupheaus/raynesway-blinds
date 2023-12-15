@@ -18,28 +18,51 @@ const useStyles = createStyles({
     maxHeight: 700,
   },
   type_title: {
-    backgroundColor: 'rgb(255 255 255 / 50%)',
+    backgroundColor: 'rgb(231 182 111 / 70%)',
     padding: 16,
   },
   gridCellMediaAndText: {
     height: '100%',
   },
   mediaAndTextTitle: {
-    position: 'absolute',
-    top: 0,
-    left: -20,
-    right: -20,
-    padding: '0 24px',
-    backgroundColor: 'rgba(255 255 255 / 80%)',
-    boxShadow: '0px 10px 20px rgba(255 255 255 / 100%)',
+    padding: 4,
+    margin: 0,
+    backgroundColor: 'rgba(231 182 111 / 60%)',
+    boxShadow: '0px 5px 10px rgba(0 0 0 / 30%)',
+    zIndex: 1,
   },
-  mediaAndTextParagraph: {
-    backgroundColor: 'rgba(255 255 255 / 70%)',
+  mediaAndTextContent: {
+    backgroundColor: 'rgba(231 182 111 / 50%)',
     boxShadow: '0px -5px 10px rgba(0 0 0 / 30%)',
-    padding: '4px 24px',
-    margin: '0 -20px',
+    padding: 4,
+    margin: 0,
     zIndex: 2,
     display: 'flex',
+  },
+
+  horizontalGridCellMediaAndText: {
+    backgroundColor: 'rgba(231 182 111 / 70%)',
+
+    [theme.mediaMaxWidth]: {
+      flexDirection: 'column',
+    },
+  },
+  horizontalGridCellMediaAndTextText: {
+    padding: 8,
+  },
+  horizontalMediaAndTextTitle: {
+    position: 'relative',
+    '&::after': {
+      content: '""',
+      position: 'absolute',
+      left: 30,
+      right: 30,
+      height: 1,
+      bottom: -8,
+      backgroundColor: 'rgba(0 0 0 / 30%)',
+    },
+  },
+  horizontalMediaAndTextContent: {
   },
 });
 
@@ -55,6 +78,8 @@ interface MediaAndTextProps {
   mediaThumbnail?: string;
   span?: number;
   children: ReactNode;
+  variant?: 'horizontal' | 'vertical';
+  mediaMaxWidth?: number | string;
 }
 
 type Props = (TitleProps | MediaAndTextProps) & ComponentProps<typeof Flex>;
@@ -77,13 +102,33 @@ export const GridCell = createComponent('GridCell', (props: Props) => {
       case 'title':
         return <Typography type="title">{title}</Typography>;
       case 'mediaAndText':
-        return (
-          <Flex tagName="grid-cell-media-and-text" isVertical className={css.gridCellMediaAndText}>
-            <Media src={props.mediaSrc} thumbnail={props.mediaThumbnail} />
-            <Typography type="heading" className={css.mediaAndTextTitle}>{title}</Typography>
-            <Typography type="paragraph" className={css.mediaAndTextParagraph}>{children}</Typography>
-          </Flex>
-        );
+        if (props.variant === 'horizontal') {
+          return (
+            <Flex tagName="grid-cell-media-and-text" className={css.horizontalGridCellMediaAndText}>
+              <Media src={props.mediaSrc} thumbnail={props.mediaThumbnail} width="100%" maxWidth={props.mediaMaxWidth} />
+              <Flex tagName="grid-cell-media-and-text-content" isVertical gap={16} className={css.horizontalGridCellMediaAndTextText}>
+                <Typography type="heading" className={css.horizontalMediaAndTextTitle}>{title}</Typography>
+                <Flex tagName="grid-cell-media-and-text-content" isVertical gap={8} className={css.horizontalMediaAndTextContent}>
+                  {typeof (children) === 'string' ? (
+                    <Typography type="paragraph">{children}</Typography>
+                  ) : children}
+                </Flex>
+              </Flex>
+            </Flex>
+          );
+        } else {
+          return (
+            <Flex tagName="grid-cell-media-and-text" isVertical className={css.gridCellMediaAndText}>
+              <Typography type="heading" className={css.mediaAndTextTitle}>{title}</Typography>
+              <Media src={props.mediaSrc} thumbnail={props.mediaThumbnail} maxWidth={props.mediaMaxWidth} />
+              <Flex tagName="grid-cell-media-and-text-content" isVertical gap={8} className={css.mediaAndTextContent}>
+                {typeof (children) === 'string' ? (
+                  <Typography type="paragraph">{children}</Typography>
+                ) : children}
+              </Flex>
+            </Flex>
+          );
+        }
     }
   }, [type, children, title, props]);
 

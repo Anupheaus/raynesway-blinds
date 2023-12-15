@@ -11,6 +11,7 @@ module.exports = (env, argv) => {
     target: 'web',
     output: {
       path: path.resolve(__dirname, './public'),
+      publicPath: '/',
     },
     module: {
       rules: [{
@@ -46,6 +47,7 @@ module.exports = (env, argv) => {
         template: path.join(__dirname, './public/index.html'),
         filename: 'index.html',
         inject: 'head',
+
         xhtml: true,
         cache: false,
         hash: true,

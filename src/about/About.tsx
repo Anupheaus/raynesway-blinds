@@ -3,6 +3,8 @@ import { theme } from '../theme';
 import { Typography } from '../typography';
 import Color from 'color';
 import { Icon } from '../icon';
+import { Helmet } from 'react-helmet';
+import { Media } from '../media';
 
 const useStyles = createStyles({
   about: {
@@ -40,11 +42,11 @@ const useStyles = createStyles({
 });
 
 interface Props {
-  className?: string;
+  isActive: boolean;
 }
 
 export const About = createComponent('About', ({
-  className,
+  isActive,
 }: Props) => {
   const { css, join } = useStyles();
 
@@ -56,8 +58,17 @@ export const About = createComponent('About', ({
     window.open('tel:03330470585', '_blank');
   });
 
+  const openCheckATrade = useBound(() => {
+    window.open('https://www.checkatrade.com/RayneswayBlinds/', '_blank');
+  });
+
   return (
-    <Flex tagName="about" className={join(css.about, className)} align="center" isVertical gap={32}>
+    <Flex tagName="about" className={css.about} align="center" isVertical gap={32}>
+      {isActive && <Helmet>
+        <title>Raynesway Blinds - About</title>
+        <meta name="description" content={'Raynesway Blinds manufacture blinds, shutters and awnings using only the finest materials.  ' +
+          'We are also open 5 days a week and can visit to measure and quote on saturday by appointment for your convenience.'} />
+      </Helmet>}
       <Flex tagName="about-main" isVertical gap={16} className={css.section}>
         <Flex tagName="about-content-title" isVertical align="center" className={join(css.box, css.titleBox)}>
           <Typography type="heading">Our History</Typography>
@@ -74,6 +85,16 @@ export const About = createComponent('About', ({
       </Flex>
       <Flex tagName="about-main" isVertical gap={16} className={css.section}>
         <Flex tagName="about-content-title" isVertical align="center" className={join(css.box, css.titleBox)}>
+          <Typography type="heading">Our Accreditations</Typography>
+        </Flex>
+        <Flex tagName="about-content-body" isVertical gap={16} className={css.box}>
+          <Tooltip content="Click here to view our Checkatrade profile">
+            <Media src="/images/cat-approved-member.png" disableGrow width={'fit-content'} onClick={openCheckATrade} />
+          </Tooltip>
+        </Flex>
+      </Flex>
+      <Flex tagName="about-main" isVertical gap={16} className={css.section}>
+        <Flex tagName="about-content-title" isVertical align="center" className={join(css.box, css.titleBox)}>
           <Typography type="heading">Our Products</Typography>
         </Flex>
         <Flex tagName="about-content-body" isVertical gap={16} className={css.box}>
@@ -84,7 +105,6 @@ export const About = createComponent('About', ({
             <Flex tagName="about-content-products-bubble" className={css.productBubble}><Typography type="paragraph">Roller Blinds</Typography></Flex>
             <Flex tagName="about-content-products-bubble" className={css.productBubble}><Typography type="paragraph">Vertical Blinds</Typography></Flex>
             <Flex tagName="about-content-products-bubble" className={css.productBubble}><Typography type="paragraph">Venetian Blinds</Typography></Flex>
-            <Flex tagName="about-content-products-bubble" className={css.productBubble}><Typography type="paragraph">Roman Blinds</Typography></Flex>
             <Flex tagName="about-content-products-bubble" className={css.productBubble}><Typography type="paragraph">Pleated Blinds</Typography></Flex>
             <Flex tagName="about-content-products-bubble" className={css.productBubble}><Typography type="paragraph">Perfect Fit Blinds</Typography></Flex>
             <Flex tagName="about-content-products-bubble" className={css.productBubble}><Typography type="paragraph">Conservatory Blinds</Typography></Flex>

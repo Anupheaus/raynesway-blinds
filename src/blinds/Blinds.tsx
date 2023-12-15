@@ -2,6 +2,10 @@ import { createComponent, createStyles, Flex } from '@anupheaus/react-ui';
 import { Grid, GridCell } from '../grid';
 import { theme } from '../theme';
 import { Typography } from '../typography';
+import { Helmet } from 'react-helmet';
+// import { useSubMenu } from '../sub-menu-provider';
+// import { PageConfig } from '../pages';
+// import { VenetianBlinds } from './VenetianBlinds';
 
 const useStyles = createStyles({
   blinds: {
@@ -12,16 +16,31 @@ const useStyles = createStyles({
   },
 });
 
+// const blindsSubMenuOptions: PageConfig[] = [
+//   { label: 'Venetian', path: '/blinds/venetian', component: VenetianBlinds },
+//   { label: 'Roller', path: '/blinds/roller', component: VenetianBlinds },
+//   { label: 'Vertical', path: '/blinds/vertical', component: VenetianBlinds },
+//   { label: 'Night and Day', path: '/blinds/night-and-day', component: VenetianBlinds },
+// ];
+
 interface Props {
-  className?: string;
+  isActive: boolean;
 }
 
 export const Blinds = createComponent('Blinds', ({
-  className,
+  isActive,
 }: Props) => {
-  const { css, join } = useStyles();
+  const { css } = useStyles();
+  // useSubMenu(blindsSubMenuOptions, isActive);
+
   return (
-    <Flex tagName="blinds" className={join(css.blinds, className)}>
+    <Flex tagName="blinds" className={css.blinds}>
+      {isActive && <Helmet>
+        <title>Raynesway Blinds - Blinds</title>
+        <meta name="description" content={'Discover the perfect window solutions with Raynesway Blinds! Explore our exquisite collection ' +
+          'of blinds, meticulously crafted to elevate your space.  From stylish designs to customizable options, find the ideal window treatments ' +
+          'for every room.'} />
+      </Helmet>}
       <Grid cellHeight={300} gap={32}>
         <GridCell type="title"><Typography type="title">Venetian Blinds</Typography></GridCell>
 

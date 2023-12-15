@@ -2,6 +2,7 @@ import { createComponent, createStyles, Flex } from '@anupheaus/react-ui';
 import { Grid, GridCell } from '../grid';
 import { theme } from '../theme';
 import { Typography } from '../typography';
+import { Helmet } from 'react-helmet';
 
 const useStyles = createStyles({
   shutters: {
@@ -13,15 +14,21 @@ const useStyles = createStyles({
 });
 
 interface Props {
-  className?: string;
+  isActive: boolean;
 }
 
 export const Awnings = createComponent('Awnings', ({
-  className,
+  isActive,
 }: Props) => {
-  const { css, join } = useStyles();
+  const { css } = useStyles();
   return (
-    <Flex tagName="awnings" className={join(css.shutters, className)}>
+    <Flex tagName="awnings" className={css.shutters}>
+      {isActive && <Helmet>
+        <title>Raynesway Blinds - Awnings</title>
+        <meta name="description" content={'Elevate your outdoor living with Raynesway Blinds\' awnings! Explore our premium range of stylish and durable ' +
+          'awnings, designed to enhance your space while providing shade and comfort. From sleek modern designs to classic styles, Raynesway Blinds\' awnings ' +
+          'offers a perfect blend of form and function for your patio or deck.'} />
+      </Helmet>}
       <Grid cellHeight={300} gap={32}>
         <GridCell type="title"><Typography type="title">Awnings</Typography></GridCell>
 

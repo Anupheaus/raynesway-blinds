@@ -2,6 +2,7 @@ import { createComponent, createStyles, Flex } from '@anupheaus/react-ui';
 import { Grid, GridCell } from '../grid';
 import { theme } from '../theme';
 import { Typography } from '../typography';
+import { Helmet } from 'react-helmet';
 
 const useStyles = createStyles({
   shutters: {
@@ -13,15 +14,20 @@ const useStyles = createStyles({
 });
 
 interface Props {
-  className?: string;
+  isActive: boolean;
 }
 
 export const Shutters = createComponent('Shutters', ({
-  className,
+  isActive,
 }: Props) => {
-  const { css, join } = useStyles();
+  const { css } = useStyles();
   return (
-    <Flex tagName="shutters" className={join(css.shutters, className)}>
+    <Flex tagName="shutters" className={css.shutters}>
+      {isActive && <Helmet>
+        <title>Raynesway Blinds - Shutters</title>
+        <meta name="description" content={'Enhance your living spaces with Raynesway Blinds\' exquisite Shutters collection. Elevate your home\'s aesthetics ' +
+          'and functionality with our premium shutter designs, meticulously crafted for durability and style.'} />
+      </Helmet>}
       <Grid cellHeight={300} gap={32}>
         <GridCell type="title"><Typography type="title">Window Shutters</Typography></GridCell>
 

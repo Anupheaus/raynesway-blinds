@@ -16,6 +16,9 @@ const useStyles = createStyles({
       boxShadow: theme.shadows.medium,
     },
   },
+  link: {
+    cursor: 'pointer',
+  },
 });
 
 interface Props extends ComponentProps<typeof Flex> {
@@ -30,6 +33,7 @@ export const Media = createComponent('Media', ({
   thumbnail,
   dropShadow = false,
   isLooped = false,
+  onClick,
   ...props
 }: Props) => {
   const { css, join } = useStyles();
@@ -48,8 +52,9 @@ export const Media = createComponent('Media', ({
   return (
     <Flex
       {...props}
+      onClick={onClick}
       tagName="media"
-      className={join(css.image, dropShadow && css.dropShadow)}
+      className={join(css.image, dropShadow && css.dropShadow, onClick != null && css.link)}
     >
       {content}
     </Flex>

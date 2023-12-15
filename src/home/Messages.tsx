@@ -33,7 +33,7 @@ export const Messages = createComponent('Messages', ({
 
   const groupMessages = (children: ReactNode, props: GroupMessagesProps = {}) => {
     return (
-      <Flex key={uniqueKey} tagName="messages" className={join(css.messages, isVisible && css.isVisible)} isVertical gap={28} disableGrow align='center' {...props}>
+      <Flex key={uniqueKey} tagName="messages" className={join(css.messages, isVisible && css.isVisible)} isVertical gap={28} align='center' disableGrow {...props}>
         {children}
       </Flex>
     );
