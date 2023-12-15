@@ -7,6 +7,7 @@ const useStyles = createStyles({
     borderRadius: 0,
     padding: '12px 16px',
     color: theme.text.primary,
+    textTransform: 'uppercase',
 
     '&::after': {
       content: '""',
