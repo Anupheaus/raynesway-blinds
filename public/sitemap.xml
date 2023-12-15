@@ -2,22 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://rayneswayblinds.com/</loc>
-    <lastmod>2023-11-30T20:23:01+00:00</lastmod>
+    <lastmod>2023-12-15T10:10:39+00:00</lastmod>
   </url>
   <url>
     <loc>https://rayneswayblinds.com/blinds</loc>
-    <lastmod>2023-11-30T20:23:01+00:00</lastmod>
+    <lastmod>2023-12-15T10:10:39+00:00</lastmod>
   </url>
   <url>
     <loc>https://rayneswayblinds.com/shutters</loc>
-    <lastmod>2023-11-30T20:23:01+00:00</lastmod>
+    <lastmod>2023-12-15T10:10:39+00:00</lastmod>
   </url>
   <url>
     <loc>https://rayneswayblinds.com/awnings</loc>
-    <lastmod>2023-11-30T20:23:01+00:00</lastmod>
+    <lastmod>2023-12-15T10:10:39+00:00</lastmod>
   </url>
   <url>
     <loc>https://rayneswayblinds.com/about</loc>
-    <lastmod>2023-12-07T20:23:01+00:00</lastmod>
+    <lastmod>2023-12-15T10:10:39+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://rayneswayblinds.com/referrals</loc>
+    <lastmod>2023-12-15T10:10:39+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://rayneswayblinds.com/referrals/recommendations</loc>
+    <lastmod>2023-12-15T10:10:39+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://rayneswayblinds.com/referrals/affiliates</loc>
+    <lastmod>2023-12-15T10:10:39+00:00</lastmod>
   </url>
 </urlset>
