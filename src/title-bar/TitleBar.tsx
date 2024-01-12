@@ -17,6 +17,7 @@ const useStyles = createStyles({
     height: 'calc(var(--title-area-height) + var(--menu-area-height) + var(--sub-menu-area-height) + 25px)',
     zIndex: 1,
     justifyContent: 'center',
+    pointerEvents: 'none',
 
     [theme.mediaMaxWidth]: {
       flexDirection: 'column',
@@ -47,6 +48,7 @@ const useStyles = createStyles({
     alignItems: 'flex-end',
     paddingBottom: 12,
     boxSizing: 'border-box',
+    pointerEvents: 'all',
 
     [theme.mediaMaxWidth]: {
       flexDirection: 'column',
@@ -62,6 +64,7 @@ const useStyles = createStyles({
     height: 'calc(var(--sub-menu-area-height) + 25px)',
     zIndex: -3,
     overflow: 'hidden',
+    pointerEvents: 'none',
   },
   subMenu: {
     position: 'absolute',
@@ -77,6 +80,7 @@ const useStyles = createStyles({
     paddingBottom: 12,
     boxSizing: 'border-box',
 
+
     [theme.mediaMaxWidth]: {
       flexDirection: 'column',
       alignItems: 'center',
@@ -86,6 +90,7 @@ const useStyles = createStyles({
   },
   subMenuIsVisible: {
     top: 0,
+    pointerEvents: 'all',
   },
   menuBackground: {
     position: 'absolute',
@@ -109,6 +114,7 @@ const useStyles = createStyles({
     flexDirection: 'inherit',
     flexGrow: 0,
     width: 'min-content',
+    pointerEvents: 'all',
   },
   menuItemContent: {
     cursor: 'pointer',
