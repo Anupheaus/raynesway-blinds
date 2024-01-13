@@ -135,10 +135,16 @@ const useStyles = createStyles({
   },
   titleContainer: {
     pointerEvents: 'none',
+    alignItems: 'center',
+
+    [theme.mediaMaxWidth]: {
+      alignItems: 'flex-start',
+    },
   },
   titleLink: {
     [theme.mediaMaxWidth]: {
       flexDirection: 'row',
+      alignItems: 'center',
       gap: 8,
     },
   },
@@ -174,6 +180,8 @@ const useStyles = createStyles({
       top: -84,
       right: 0,
       flexDirection: 'column',
+      flexWrap: 'wrap-reverse',
+      maxHeight: 'var(--title-area-height)',
     },
   },
   link: {
@@ -200,6 +208,8 @@ export const TitleBar = createComponent('TitleBar', () => {
       case 'twitter': window.open('https://twitter.com/rayneswayblinds', '_blank'); break;
       case 'facebook': window.open('https://www.facebook.com/rayneswayblinds', '_blank'); break;
       case 'instagram': window.open('https://www.instagram.com/rayneswayblinds', '_blank'); break;
+      case 'linkedin': window.open('https://www.linkedin.com/company/raynesway-blinds', '_blank'); break;
+      case 'pinterest': window.open('https://www.pinterest.co.uk/rayneswayblinds', '_blank'); break;
       case 'nextdoor': window.open('https://nextdoor.co.uk/pages/raynesway-blinds', '_blank'); break;
     }
   });
@@ -240,7 +250,7 @@ export const TitleBar = createComponent('TitleBar', () => {
           {subMenuItems}
         </Flex>
       </Flex>
-      <Flex tagName="title-bar-title" isVertical gap={4} disableGrow align={'center'} className={css.titleContainer}>
+      <Flex tagName="title-bar-title" isVertical gap={4} disableGrow className={css.titleContainer}>
         <Link to="/" className={join(css.menuItemLink, css.titleLink)}>
           <img src="/images/logo.png" alt="Raynesway Blinds Logo" width={80} height={80} className={css.logo} />
           <Typography type="website-title" className={css.title}>RAYNESWAY BLINDS</Typography>
@@ -261,6 +271,12 @@ export const TitleBar = createComponent('TitleBar', () => {
           </Tooltip>
           <Tooltip content="View our Instagram feed">
             <Icon name="instagram" color={theme.text.secondary} className={css.link} onClick={visit('instagram')} />
+          </Tooltip>
+          <Tooltip content="Visit our Linked In page">
+            <Icon name="linkedin" color={theme.text.secondary} className={css.link} onClick={visit('linkedin')} />
+          </Tooltip>
+          <Tooltip content="Visit our Pinterest page">
+            <Icon name="pinterest" color={theme.text.secondary} className={css.link} onClick={visit('pinterest')} />
           </Tooltip>
           <Tooltip content="Visit our Nextdoor page">
             <Icon name="nextdoor" color={theme.text.secondary} className={join(css.link, css.nextdoor)} onClick={visit('nextdoor')} />

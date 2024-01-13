@@ -1,5 +1,6 @@
 import { Icon as IconComponent, createComponent, createStyles } from '@anupheaus/react-ui';
-import { FiFacebook, FiInstagram, FiMail, FiMapPin, FiPhoneCall, FiTwitter, FiX } from 'react-icons/fi';
+import { FiFacebook, FiInstagram, FiMail, FiMapPin, FiLinkedin, FiPhoneCall, FiTwitter, FiX } from 'react-icons/fi';
+import { FaPinterest } from 'react-icons/fa';
 import { ReactSVG } from 'react-svg';
 import { theme } from '../theme';
 import { useMemo } from 'react';
@@ -41,6 +42,8 @@ export const Icon = IconComponent.augmentWith({
   'instagram': FiInstagram,
   'facebook': FiFacebook,
   'nextdoor': props => <SVGIcon {...props} src="/images/nextdoor.svg" />,
+  'linkedin': FiLinkedin,
+  'pinterest': FaPinterest,
   'address': FiMapPin,
   'email': FiMail,
   'telephone': FiPhoneCall,
