@@ -6,11 +6,12 @@ import { Icon } from '../icon';
 import { Helmet } from 'react-helmet';
 import { Media } from '../media';
 
-const useStyles = createStyles({
+export const useAboutStyles = createStyles({
   about: {
     padding: 32,
     overflowX: 'hidden',
     overflowY: 'auto',
+    height: 'min-content',
     ...theme.scrollbars.styling,
   },
   section: {
@@ -48,7 +49,7 @@ interface Props {
 export const About = createComponent('About', ({
   isActive,
 }: Props) => {
-  const { css, join } = useStyles();
+  const { css, join } = useAboutStyles();
 
   const sendMail = useBound(() => {
     window.open('mailto:sales@rayneswayblinds.com', '_blank');

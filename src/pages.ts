@@ -5,12 +5,14 @@ import { Awnings } from './awnings';
 import { About } from './about';
 import { Referrals } from './referrals';
 import { Home } from './home';
+import { Reviews } from './reviews';
 
 export interface PageConfig {
   label: ReactNode;
   path: string;
   isDefault?: boolean;
   component: FunctionComponent<{ isActive: boolean; }>;
+  isVisibleInMenu?: boolean;
 }
 
 export const pages: PageConfig[] = [
@@ -20,4 +22,5 @@ export const pages: PageConfig[] = [
   { label: 'Awnings', path: '/awnings', component: Awnings },
   { label: 'Referrals', path: '/referrals', component: Referrals },
   { label: 'About', path: '/about', component: About },
+  { label: 'Reviews', path: '/reviews', component: Reviews, isVisibleInMenu: false },
 ];

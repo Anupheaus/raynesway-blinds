@@ -214,13 +214,14 @@ export const TitleBar = createComponent('TitleBar', () => {
     }
   });
 
-  const menuItems = useMemo(() => pages.filter(({ isDefault }) => !isDefault).map(({ path, label }) => (
-    <Flex key={path} tagName="website-title-menu-item" className={css.menuItem} align="center" disableGrow>
-      <Link to={path} className={css.menuItemLink}>
-        <Typography type="website-title-menu-item" className={css.menuItemContent}>{label}</Typography>
-      </Link>
-    </Flex>
-  )), []);
+  const menuItems = useMemo(() => pages.filter(({ isDefault, isVisibleInMenu = true }) => !isDefault && isVisibleInMenu)
+    .map(({ path, label }) => (
+      <Flex key={path} tagName="website-title-menu-item" className={css.menuItem} align="center" disableGrow>
+        <Link to={path} className={css.menuItemLink}>
+          <Typography type="website-title-menu-item" className={css.menuItemContent}>{label}</Typography>
+        </Link>
+      </Flex>
+    )), []);
 
   const subMenuItems = useMemo(() => currentSubMenuOptionsRef.current.map(({ path, label }) => (
     <Flex key={path} tagName="website-title-menu-item" className={css.menuItem} align="center" disableGrow>
