@@ -56,7 +56,7 @@ export const About = createComponent('About', ({
   });
 
   const callUs = useBound(() => {
-    window.open('tel:03330470585', '_blank');
+    window.open('tel:01332280585', '_blank');
   });
 
   const openCheckATrade = useBound(() => {
@@ -129,7 +129,7 @@ export const About = createComponent('About', ({
           <Flex gap={6}>
             <Icon name="telephone" />
             <Tooltip content="Click here to call us">
-              <Typography type="paragraph" onClick={callUs} className={css.link}>0333 047 0585</Typography>
+              <Typography type="paragraph" onClick={callUs} className={css.link}>01332 280585</Typography>
             </Tooltip>
           </Flex>
         </Flex>

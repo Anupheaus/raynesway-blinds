@@ -259,8 +259,8 @@ export const TitleBar = createComponent('TitleBar', () => {
       </Flex>
       <Flex tagName="title-bar-contact-details" className={css.contactDetails} gap={8} height="min-content" disableGrow>
         <a href="tel:+443330470585" className={css.link}>
-          <Tooltip content="Call us on 03330 470585">
-            <Typography type={'website-title-telephone-number'} className={css.link}>0333 047 0585</Typography>
+          <Tooltip content="Call us on 01332 280585">
+            <Typography type={'website-title-telephone-number'} className={css.link}>01332 280585</Typography>
           </Tooltip>
         </a>
         <Flex tagName="title-bar-social-links" gap={8} className={css.socialLinks}>
