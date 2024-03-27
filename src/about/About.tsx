@@ -11,7 +11,6 @@ export const useAboutStyles = createStyles({
     padding: 32,
     overflowX: 'hidden',
     overflowY: 'auto',
-    height: 'min-content',
     ...theme.scrollbars.styling,
   },
   section: {
