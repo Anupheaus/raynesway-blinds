@@ -47,7 +47,7 @@ export const Referrals = createComponent('Referrals', ({
           </Helmet>}
           <Grid cellHeight={300} gap={32}>
             <GridCell type="mediaAndText" title="Recommendations Scheme" mediaSrc="/images/recommendation.png" variant="horizontal">
-              <Typography type="paragraph">We are offering a very generous 5% of the order value from any friends that you recommend to us.</Typography>
+              <Typography type="paragraph">We are offering up to a whopping £50 Amazon gift card for you for any friends that you recommend to us.</Typography>
               <Flex align="center" valign="bottom" className={css.buttonArea}>
                 <Button onSelect={viewRecommendationsScheme}>View the full details</Button>
               </Flex>
