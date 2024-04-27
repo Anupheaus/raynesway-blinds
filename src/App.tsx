@@ -33,6 +33,17 @@ const GlobalTheme = createRootThemeProvider({
         '--sub-menu-area-height': `${theme.positioning.mobile.subMenuAreaHeight}px`,
       },
     },
+    h1: {
+      fontSize: 34,
+      textShadow: '0px 1px 3px rgba(0 0 0 / 30%)',
+      marginBlock: 0,
+    },
+    h2: {
+      fontSize: 22,
+      textShadow: '0px 1px 3px rgba(0 0 0 / 30%)',
+      marginBlock: 0,
+      fontWeight: 'normal',
+    },
   },
 });
 

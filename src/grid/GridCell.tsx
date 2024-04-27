@@ -107,7 +107,7 @@ export const GridCell = createComponent('GridCell', (props: Props) => {
             <Flex tagName="grid-cell-media-and-text" className={css.horizontalGridCellMediaAndText}>
               <Media src={props.mediaSrc} thumbnail={props.mediaThumbnail} width="100%" maxWidth={props.mediaMaxWidth} />
               <Flex tagName="grid-cell-media-and-text-content" isVertical gap={16} className={css.horizontalGridCellMediaAndTextText}>
-                <Typography type="heading" className={css.horizontalMediaAndTextTitle}>{title}</Typography>
+                <h2 className={css.horizontalMediaAndTextTitle}>{title}</h2>
                 <Flex tagName="grid-cell-media-and-text-content" isVertical gap={8} className={css.horizontalMediaAndTextContent}>
                   {typeof (children) === 'string' ? (
                     <Typography type="paragraph">{children}</Typography>
@@ -119,7 +119,7 @@ export const GridCell = createComponent('GridCell', (props: Props) => {
         } else {
           return (
             <Flex tagName="grid-cell-media-and-text" isVertical className={css.gridCellMediaAndText}>
-              <Typography type="heading" className={css.mediaAndTextTitle}>{title}</Typography>
+              <h2 className={css.mediaAndTextTitle}>{title}</h2>
               <Media src={props.mediaSrc} thumbnail={props.mediaThumbnail} maxWidth={props.mediaMaxWidth} />
               <Flex tagName="grid-cell-media-and-text-content" isVertical gap={8} className={css.mediaAndTextContent}>
                 {typeof (children) === 'string' ? (

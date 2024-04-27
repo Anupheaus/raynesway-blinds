@@ -42,7 +42,7 @@ export const Blinds = createComponent('Blinds', ({
           'for every room.'} />
       </Helmet>}
       <Grid cellHeight={300} gap={32}>
-        <GridCell type="title"><Typography type="title">Venetian Blinds</Typography></GridCell>
+        <GridCell type="title"><h1>Venetian Blinds</h1></GridCell>
 
         <GridCell type="mediaAndText" title="Step into Elegance..." mediaSrc="/images/venetians-1.jpg">
           Are you ready to transform your living space into a stylish haven? Look no further than our exquisite collection of

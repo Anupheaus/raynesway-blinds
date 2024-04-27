@@ -71,7 +71,7 @@ export const About = createComponent('About', ({
       </Helmet>}
       <Flex tagName="about-main" isVertical gap={16} className={css.section}>
         <Flex tagName="about-content-title" isVertical align="center" className={join(css.box, css.titleBox)}>
-          <Typography type="heading">Our History</Typography>
+          <h2>Our History</h2>
         </Flex>
         <Flex tagName="about-content-body" isVertical gap={16} className={css.box}>
           <Typography type="paragraph">
@@ -85,7 +85,7 @@ export const About = createComponent('About', ({
       </Flex>
       <Flex tagName="about-main" isVertical gap={16} className={css.section}>
         <Flex tagName="about-content-title" isVertical align="center" className={join(css.box, css.titleBox)}>
-          <Typography type="heading">Our Accreditations</Typography>
+          <h2>Our Accreditations</h2>
         </Flex>
         <Flex tagName="about-content-body" isVertical gap={16} className={css.box}>
           <Tooltip content="Click here to view our Checkatrade profile">
@@ -95,7 +95,7 @@ export const About = createComponent('About', ({
       </Flex>
       <Flex tagName="about-main" isVertical gap={16} className={css.section}>
         <Flex tagName="about-content-title" isVertical align="center" className={join(css.box, css.titleBox)}>
-          <Typography type="heading">Our Products</Typography>
+          <h2>Our Products</h2>
         </Flex>
         <Flex tagName="about-content-body" isVertical gap={16} className={css.box}>
           <Typography type="paragraph">
@@ -115,7 +115,7 @@ export const About = createComponent('About', ({
       </Flex>
       <Flex tagName="about-main" isVertical gap={16} className={css.section}>
         <Flex tagName="about-content-title" isVertical align="center" className={join(css.box, css.titleBox)}>
-          <Typography type="heading">Our Contact Information</Typography>
+          <h2>Our Contact Information</h2>
         </Flex>
         <Flex tagName="about-content-body" isVertical gap={16} className={css.box}>
           <Flex gap={6}><Icon name="address" /><Typography type="paragraph">Unit 5, 227 Derby Road, Chaddesden, Derby, DE21 6SY</Typography></Flex>
