@@ -191,7 +191,9 @@ const useStyles = createStyles({
   },
   nextdoor: {
     marginLeft: -2,
-    marginTop: -2,
+    marginTop: -4,
+    marginRight: -4,
+    transform: 'scale(0.8)',
   },
 });
 
@@ -211,6 +213,10 @@ export const TitleBar = createComponent('TitleBar', () => {
       case 'linkedin': window.open('https://www.linkedin.com/company/raynesway-blinds', '_blank'); break;
       case 'pinterest': window.open('https://www.pinterest.co.uk/rayneswayblinds', '_blank'); break;
       case 'nextdoor': window.open('https://nextdoor.co.uk/pages/raynesway-blinds', '_blank'); break;
+      case 'cookie-consent': {
+        (window as any).displayPreferenceModal();
+        break;
+      }
     }
   });
 
@@ -282,8 +288,11 @@ export const TitleBar = createComponent('TitleBar', () => {
           <Tooltip content="Visit our Nextdoor page">
             <Icon name="nextdoor" color={theme.text.secondary} className={join(css.link, css.nextdoor)} onClick={visit('nextdoor')} />
           </Tooltip>
+          <Tooltip content="Change your cookie consent preferences">
+            <Icon name="cookies" color={theme.text.secondary} className={css.link} onClick={visit('cookie-consent')} />
+          </Tooltip>
         </Flex>
       </Flex>
-    </Flex>
+    </Flex >
   );
 });

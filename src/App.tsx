@@ -45,7 +45,6 @@ export const App = createComponent('App', () => {
         <SubMenuProvider>
           <TitleBar />
           <Content />
-          <CookieConsent />
         </SubMenuProvider>
       </BrowserRouter>
     </GlobalTheme>

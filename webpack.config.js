@@ -60,6 +60,10 @@ module.exports = (env, argv) => {
         'react': path.join(__dirname, './node_modules/react'),
         'react-dom': path.join(__dirname, './node_modules/react-dom'),
       },
+      fallback: {
+        path: false,
+        fs: false,
+      }
     },
     devServer: {
       static: {

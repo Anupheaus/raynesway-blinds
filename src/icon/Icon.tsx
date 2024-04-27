@@ -1,6 +1,7 @@
 import { Icon as IconComponent, createComponent, createStyles } from '@anupheaus/react-ui';
 import { FiFacebook, FiInstagram, FiMail, FiMapPin, FiLinkedin, FiPhoneCall, FiTwitter, FiX } from 'react-icons/fi';
 import { FaPinterest } from 'react-icons/fa';
+import { PiCookie } from 'react-icons/pi';
 import { ReactSVG } from 'react-svg';
 import { theme } from '../theme';
 import { useMemo } from 'react';
@@ -48,4 +49,5 @@ export const Icon = IconComponent.augmentWith({
   'email': FiMail,
   'telephone': FiPhoneCall,
   'close': FiX,
+  'cookies': PiCookie,
 });

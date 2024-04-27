@@ -23,6 +23,7 @@ interface CellSize {
 interface Props extends ComponentProps<typeof Flex> {
   cellHeight?: string | number;
   minCellWidth?: number;
+  gap: number;
 }
 
 export const Grid = createComponent('Grid', ({

@@ -15,15 +15,16 @@
   ],
   "typings": "dist/index",
   "dependencies": {
-    "@anupheaus/common": "^0.0.23",
-    "@anupheaus/react-ui": "^0.0.25",
+    "@anupheaus/common": "^0.1.7",
+    "@anupheaus/react-ui": "^0.0.46",
     "color": "^4.2.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.20.0",
     "react-icons": "^4.12.0",
     "react-helmet": "^6.1.0",
-    "react-svg": "^16.1.31"
+    "react-svg": "^16.1.31",
+    "klaro": "^0.7.21"
   },
   "devDependencies": {
     "@types/color": "^3.0.6",
