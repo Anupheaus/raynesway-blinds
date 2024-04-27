@@ -46,8 +46,8 @@ module.exports = (env, argv) => {
       new HtmlWebpackPlugin({
         template: path.join(__dirname, './public/index.html'),
         filename: 'index.html',
-        inject: 'head',
-
+        inject: 'body',
+        scriptLoading: 'blocking',
         xhtml: true,
         cache: false,
         hash: true,

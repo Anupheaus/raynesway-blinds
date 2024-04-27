@@ -3,7 +3,6 @@ import { BrowserRouter } from 'react-router-dom';
 import { Content } from './Content';
 import { theme } from './theme';
 import { TitleBar } from './title-bar';
-import { CookieConsent } from './cookie-consent';
 import { SubMenuProvider } from './sub-menu-provider';
 
 const GlobalTheme = createRootThemeProvider({
