@@ -30,6 +30,7 @@
     "src/**/*"
   ],
   "exclude": [
-    "dist",
+    "public/**/*",
+    "functions/**/*"
   ]
 }
