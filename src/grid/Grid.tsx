@@ -13,7 +13,8 @@ const useStyles = createStyles({
   },
 });
 
-const isGridCell = (element: unknown): element is ReactElement<ComponentProps<typeof GridCell>> => isValidElement(element) && typeof (element.type) !== 'string' && element.type.name === 'GridCell';
+const isGridCell = (element: unknown): element is ReactElement<ComponentProps<typeof GridCell>> => isValidElement(element) &&
+  typeof (element.type) !== 'string' && element.type.name.startsWith('GridCell');
 
 interface CellSize {
   width: string | number;
@@ -44,7 +45,9 @@ export const Grid = createComponent('Grid', ({
     let currentWidth = 0;
     let columns = 0;
 
-    for (const element of Children.toArray(children).map(e => isGridCell(e) ? e : null).removeNull()) {
+    const allElements = Children.toArray(children).map(e => isGridCell(e) ? e : null).removeNull();
+
+    for (const element of allElements) {
       const isTitle = element.props.type === 'title';
       const span = ('span' in element.props ? element.props.span : undefined) ?? 1;
       const cellWidth = minCellWidth * span;
