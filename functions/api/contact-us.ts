@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 interface ContactForm {
   name: string;
   email?: string;
@@ -7,12 +8,23 @@ interface ContactForm {
 }
 
 export const onRequest: PagesFunction = async ({ request }) => {
-  if (request.method !== 'POST') return new Response('Method not allowed', { status: 405 });
+  console.log('Request received from contact form.', { IPAddress: request.headers.get('CF-Connecting-IP'), method: request.method });
 
+  if (request.method !== 'POST') {
+    console.error('Method not allowed', { method: request.method });
+    return new Response('Method not allowed', { status: 405 });
+  }
+
+  console.log('Extracting contact form data from request body...');
   const { name, email, phoneNumber, source, additionalInformation } = await request.json<ContactForm>();
+  console.log('Extracted contact form data.', { name, email, phoneNumber, source, additionalInformation });
 
-  if (name == null || phoneNumber == null || source == null) return new Response('Missing required fields', { status: 400 });
+  if (name == null || phoneNumber == null || source == null) {
+    console.error('Missing required fields');
+    return new Response('Missing required fields', { status: 400 });
+  }
 
+  console.log('Sending email to sales department...');
   new Request('https://api.mailchannels.net/tx/v1/send', {
     method: 'POST',
     headers: {
@@ -30,6 +42,6 @@ export const onRequest: PagesFunction = async ({ request }) => {
       }],
     }),
   });
-
+  console.log('Email sent to sales department.');
   return new Response('Success', { status: 200 });
 };
