@@ -25,7 +25,7 @@ export const onRequest: PagesFunction = async ({ request }) => {
   }
 
   console.log('Sending email to sales department...');
-  new Request('https://api.mailchannels.net/tx/v1/send', {
+  const response = await fetch('https://api.mailchannels.net/tx/v1/send', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -42,6 +42,11 @@ export const onRequest: PagesFunction = async ({ request }) => {
       }],
     }),
   });
-  console.log('Email sent to sales department.');
-  return new Response('Success', { status: 200 });
+  if (response.ok) {
+    console.log('Email sent to sales department.');
+    return new Response('Success', { status: 200 });
+  } else {
+    console.error('Failed to send email to sales department.', { status: response.status, statusText: response.statusText });
+    return new Response('Failed to send email to sales department.', { status: 500 });
+  }
 };
