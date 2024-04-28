@@ -1,4 +1,7 @@
 /* eslint-disable no-console */
+/* @ts-expect-error email signature file */
+import emailSignature from './emailSignature.html?raw';
+
 interface ContactForm {
   name: string;
   email?: string;
@@ -21,41 +24,11 @@ const sourceMap = {
   advert: 'an advert we have placed',
 };
 
-export const onRequest: PagesFunction = async ({ request, env }) => {
-  console.log('Request received from contact form.', { IPAddress: request.headers.get('CF-Connecting-IP'), method: request.method });
-  let hasEmail = true;
-
-  if (request.method !== 'POST') {
-    console.error('Method not allowed', { method: request.method });
-    return new Response('Method not allowed', { status: 405 });
-  }
-
-  console.log('Extracting contact form data from request body...');
-  let { name, email, phoneNumber, source, additionalInformation } = await request.json<ContactForm>();
-  console.log('Extracted contact form data.', { name, email, phoneNumber, source, additionalInformation });
-
-  if (isEmpty(name)) {
-    console.error('The name field cannot be empty.');
-    return new Response('The name field cannot be empty.', { status: 400 });
-  }
-  if (isEmpty(phoneNumber)) {
-    console.error('The phone number field cannot be empty.');
-    return new Response('The phone number field cannot be empty.', { status: 400 });
-  }
-  if (isEmpty(source)) {
-    console.error('The source field cannot be empty.');
-    return new Response('The source field cannot be empty.', { status: 400 });
-  }
-  if (!isEmpty(email) && !validEmail.test(email)) {
-    console.error('The email address is invalid.');
-    return new Response('The email has to be a valid email address.', { status: 400 });
-  }
-  if (isEmpty(email)) { hasEmail = false; email = 'no-reply@rayneswayblinds.com'; }
-
+async function sendEmailToSalesDepartment(name: string, source: string, phoneNumber: string, email: string | undefined, additionalInformation: string | undefined, env: Parameters<PagesFunction>[0]['env']) {
   const sourceText = sourceMap[source];
   let content = `Hi,\n\n${name} has contacted us via our website asking for an appointment to be booked with them.\n\n`;
   if (sourceText != null) content += `They have found us by ${sourceText}.\n\n`;
-  if (hasEmail) {
+  if (!isEmpty(email)) {
     content += `You can call them on ${phoneNumber} but they have also provided their email address as "${email}".\n\n`;
   } else {
     content += `You can call them on ${phoneNumber}.\n\n`;
@@ -75,7 +48,7 @@ export const onRequest: PagesFunction = async ({ request, env }) => {
         dkim_selector: 'mailchannels',
         dkim_private_key: (env as any).MAILCHANNELS_DKIM_PRIVATE_KEY,
       }],
-      from: { email: 'no-reply@rayneswayblinds.com', name: 'Do Not Reply' },
+      from: { email: 'no-reply@rayneswayblinds.com', name: 'Raynesway Blinds Website' },
       subject: `${name} has requested an appointment.`,
       content: [{
         type: 'text/plain',
@@ -87,9 +60,78 @@ export const onRequest: PagesFunction = async ({ request, env }) => {
   const responseText = await response.text();
   if (response.ok) {
     console.log('Email sent to sales department.');
-    return new Response('Success', { status: 200 });
   } else {
     console.error('Failed to send email to sales department.', { status: response.status, statusText: response.statusText, responseText });
     return new Response('We\'re really sorry but we were unable to send your details to our sales department.', { status: 500 });
   }
+}
+
+async function sendEmailToSender(name: string, email: string | undefined, env: Parameters<PagesFunction>[0]['env']) {
+  if (isEmpty(email)) return;
+
+  const content = `Hi ${name},\n\nThank you very much for your request to make an appointment with us via our website.\n\n` +
+    'We will be in touch with you very soon to arrange a suitable time for us to come and visit you and ' +
+    'measure up where your new blinds could be installed.\n\nWith Kind Regards,\n' + emailSignature;
+
+  console.log('Sending email to sender...');
+  const sendRequest = new Request('https://api.mailchannels.net/tx/v1/send', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      personalizations: [{
+        to: [{ email, name }],
+        dkim_domain: 'rayneswayblinds.com',
+        dkim_selector: 'mailchannels',
+        dkim_private_key: (env as any).MAILCHANNELS_DKIM_PRIVATE_KEY,
+      }],
+      from: { email: 'sales@rayneswayblinds.com', name: 'Raynesway Blinds Sales Department' },
+      subject: `Thank you ${name} for your request to make an appointment with us.`,
+      content: [{
+        type: 'text/html',
+        value: content,
+      }],
+    }),
+  });
+  const response = await fetch(sendRequest);
+  const responseText = await response.text();
+  if (response.ok) {
+    console.log('Email sent to sender.');
+  } else {
+    console.error('Failed to send email to sender.', { status: response.status, statusText: response.statusText, responseText });
+  }
+}
+
+export const onRequest: PagesFunction = async ({ request, env }) => {
+  console.log('Request received from contact form.', { IPAddress: request.headers.get('CF-Connecting-IP'), method: request.method });
+
+  if (request.method !== 'POST') {
+    console.error('Method not allowed', { method: request.method });
+    return new Response('Method not allowed', { status: 405 });
+  }
+
+  console.log('Extracting contact form data from request body...');
+  const { name, email, phoneNumber, source, additionalInformation } = await request.json<ContactForm>();
+  console.log('Extracted contact form data.', { name, email, phoneNumber, source, additionalInformation });
+
+  if (isEmpty(name)) {
+    console.error('The name field cannot be empty.');
+    return new Response('The name field cannot be empty.', { status: 400 });
+  }
+  if (isEmpty(phoneNumber)) {
+    console.error('The phone number field cannot be empty.');
+    return new Response('The phone number field cannot be empty.', { status: 400 });
+  }
+  if (isEmpty(source)) {
+    console.error('The source field cannot be empty.');
+    return new Response('The source field cannot be empty.', { status: 400 });
+  }
+  if (!isEmpty(email) && !validEmail.test(email)) {
+    console.error('The email address is invalid.');
+    return new Response('The email has to be a valid email address.', { status: 400 });
+  }
+
+  await sendEmailToSalesDepartment(name, source, phoneNumber, email, additionalInformation, env);
+  await sendEmailToSender(name, email, env);
 };

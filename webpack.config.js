@@ -15,6 +15,9 @@ module.exports = (env, argv) => {
     },
     module: {
       rules: [{
+        resourceQuery: /raw/,
+        type: 'asset/source',
+      }, {
         test: /\.tsx?$/,
         loader: 'ts-loader',
         options: {
