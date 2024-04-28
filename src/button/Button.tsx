@@ -2,21 +2,24 @@ import { ComponentProps } from 'react';
 import { Button as ReactUIButton, createComponent, createStyles } from '@anupheaus/react-ui';
 import { theme } from '../theme';
 
-const useStyles = createStyles({
+const useStyles = createStyles(({ pseudoClasses }, { applyTransition }) => ({
   button: {
-    borderRadius: 0,
+    borderRadius: 4,
     padding: '12px 16px',
-    color: theme.text.primary,
+    backgroundColor: theme.button.normal.background,
+    color: theme.button.normal.color,
     textTransform: 'uppercase',
+    fontFamily: 'Mulish, sans-serif',
+    boxShadow: theme.shadows.light,
+    ...applyTransition('box-shadow, background-color'),
 
-    '&::after': {
-      content: '""',
-      position: 'absolute',
-      inset: 4,
-      border: 'solid 1px rgba(255 255 255 / 50%)',
+    [pseudoClasses.active]: {
+      backgroundColor: theme.button.active.background,
+      color: theme.button.active.color,
+      boxShadow: theme.shadows.medium,
     },
   },
-});
+}));
 
 interface Props extends ComponentProps<typeof ReactUIButton> {
 }

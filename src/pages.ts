@@ -6,6 +6,7 @@ import { About } from './about';
 import { Referrals } from './referrals';
 import { Home } from './home';
 import { Reviews } from './reviews';
+import { BookAppointment } from './book-appointment';
 
 export interface PageConfig {
   label: ReactNode;
@@ -23,4 +24,5 @@ export const pages: PageConfig[] = [
   { label: 'Referrals', path: '/referrals', component: Referrals },
   { label: 'About', path: '/about', component: About },
   { label: 'Reviews', path: '/reviews', component: Reviews, isVisibleInMenu: false },
+  { label: 'Book Appointment', path: '/book-appointment', component: BookAppointment, isVisibleInMenu: false }
 ];

@@ -1,9 +1,10 @@
-import { createComponent, createRootThemeProvider } from '@anupheaus/react-ui';
+import { NotificationsProvider, createComponent, createRootThemeProvider } from '@anupheaus/react-ui';
 import { BrowserRouter } from 'react-router-dom';
 import { Content } from './Content';
 import { theme } from './theme';
 import { TitleBar } from './title-bar';
 import { SubMenuProvider } from './sub-menu-provider';
+import { WhatsappMe } from './whatsapp-me';
 
 const GlobalTheme = createRootThemeProvider({
   globalStyles: {
@@ -51,12 +52,15 @@ export const App = createComponent('App', () => {
 
   return (
     <GlobalTheme>
-      <BrowserRouter>
-        <SubMenuProvider>
-          <TitleBar />
-          <Content />
-        </SubMenuProvider>
-      </BrowserRouter>
+      <NotificationsProvider>
+        <BrowserRouter>
+          <SubMenuProvider>
+            <TitleBar />
+            <Content />
+            <WhatsappMe />
+          </SubMenuProvider>
+        </BrowserRouter>
+      </NotificationsProvider>
     </GlobalTheme>
   );
 });

@@ -7,6 +7,7 @@ import { Icon } from '../icon';
 import { useEffect, useMemo, useRef } from 'react';
 import { pages } from '../pages';
 import { useSubMenu } from '../sub-menu-provider';
+import { Button } from '../button';
 
 const useStyles = createStyles({
   titleBar: {
@@ -171,6 +172,18 @@ const useStyles = createStyles({
       justifyContent: 'center',
     },
   },
+  contactUsContainer: {
+    position: 'absolute',
+    top: 18,
+    left: 18,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    pointerEvents: 'all',
+  },
+  contactUsButton: {
+    fontSize: 22,
+    whiteSpace: 'nowrap',
+  },
   socialLinks: {
     paddingRight: 6,
     justifyContent: 'flex-end',
@@ -188,6 +201,7 @@ const useStyles = createStyles({
     cursor: 'pointer',
     height: 'min-content',
     pointerEvents: 'all',
+    whiteSpace: 'nowrap',
   },
   nextdoor: {
     marginLeft: -2,
@@ -257,6 +271,11 @@ export const TitleBar = createComponent('TitleBar', () => {
           {subMenuItems}
         </Flex>
       </Flex>
+      <Flex tagName="title-bar-contact-us-button" className={css.contactUsContainer} align="left" disableGrow>
+        <Link to="/book-appointment" className={css.menuItemLink}>
+          <Button className={css.contactUsButton}>REQUEST AN APPOINTMENT</Button>
+        </Link>
+      </Flex>
       <Flex tagName="title-bar-title" isVertical gap={4} disableGrow className={css.titleContainer}>
         <Link to="/" className={join(css.menuItemLink, css.titleLink)}>
           <img src="/images/logo.png" alt="Raynesway Blinds Logo" width={80} height={80} className={css.logo} />
@@ -264,7 +283,7 @@ export const TitleBar = createComponent('TitleBar', () => {
         </Link>
       </Flex>
       <Flex tagName="title-bar-contact-details" className={css.contactDetails} gap={8} height="min-content" disableGrow>
-        <a href="tel:+443330470585" className={css.link}>
+        <a href="tel:+441332280585" className={css.link}>
           <Tooltip content="Call us on 01332 280585">
             <Typography type={'website-title-telephone-number'} className={css.link}>01332 280585</Typography>
           </Tooltip>

@@ -30,6 +30,7 @@ interface Props extends ComponentProps<typeof Flex> {
 
 export const Media = createComponent('Media', ({
   src,
+  className,
   thumbnail,
   dropShadow = false,
   isLooped = false,
@@ -54,7 +55,7 @@ export const Media = createComponent('Media', ({
       {...props}
       onClick={onClick}
       tagName="media"
-      className={join(css.image, dropShadow && css.dropShadow, onClick != null && css.link)}
+      className={join(css.image, dropShadow && css.dropShadow, onClick != null && css.link, className)}
     >
       {content}
     </Flex>

@@ -17,6 +17,7 @@ export const useAboutStyles = createStyles({
     maxWidth: '40%',
     minWidth: 300,
     width: '100%',
+    maxHeight: 'min-content',
   },
   box: {
     borderRadius: 4,
@@ -24,6 +25,7 @@ export const useAboutStyles = createStyles({
     backgroundColor: Color(theme.background.primary).alpha(0.5).hexa().toString(),
     padding: 16,
     boxShadow: theme.shadows.medium,
+    flexGrow: 0,
   },
   titleBox: {
     backgroundColor: 'rgb(255 255 255 / 50%)',
