@@ -75,7 +75,7 @@ export const onRequest: PagesFunction = async ({ request, env }) => {
         dkim_selector: 'mailchannels',
         dkim_private_key: (env as any).MAILCHANNELS_DKIM_PRIVATE_KEY,
       }],
-      from: { email: 'no-reply@raynweswayblinds.com', name: 'Do Not Reply' },
+      from: { email: 'no-reply@rayneswayblinds.com', name: 'Do Not Reply' },
       subject: `${name} has requested an appointment.`,
       content: [{
         type: 'text/plain',
