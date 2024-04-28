@@ -25,7 +25,7 @@ export const onRequest: PagesFunction = async ({ request }) => {
   }
 
   console.log('Sending email to sales department...');
-  const response = await fetch('https://api.mailchannels.net/tx/v1/send', {
+  const sendRequest = new Request('https://api.mailchannels.net/tx/v1/send', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ export const onRequest: PagesFunction = async ({ request }) => {
       personalizations: [{
         to: [{ email: 'sales@rayneswayblinds.com', name: 'Raynesway Blinds Sales Department' }],
       }],
-      from: { email, name },
+      from: { email: 'sales@rayneswayblinds.com', name: 'Raynesway Blinds Sales Department' },
       subject: 'Website Appointment Request Submission',
       content: [{
         type: 'text/plain',
@@ -42,11 +42,13 @@ export const onRequest: PagesFunction = async ({ request }) => {
       }],
     }),
   });
+  const response = await fetch(sendRequest);
+  const responseText = await response.text();
   if (response.ok) {
     console.log('Email sent to sales department.');
     return new Response('Success', { status: 200 });
   } else {
-    console.error('Failed to send email to sales department.', { status: response.status, statusText: response.statusText });
+    console.error('Failed to send email to sales department.', { status: response.status, statusText: response.statusText, responseText });
     return new Response('Failed to send email to sales department.', { status: 500 });
   }
 };
