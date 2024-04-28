@@ -62,7 +62,7 @@ async function sendEmailToSalesDepartment(name: string, source: string, phoneNum
     console.log('Email sent to sales department.');
   } else {
     console.error('Failed to send email to sales department.', { status: response.status, statusText: response.statusText, responseText });
-    return new Response('We\'re really sorry but we were unable to send your details to our sales department.', { status: 500 });
+    throw new Error('We\'re really sorry but we were unable to send your details to our sales department.');
   }
 }
 
@@ -104,34 +104,43 @@ async function sendEmailToSender(name: string, email: string | undefined, env: P
 }
 
 export const onRequest: PagesFunction = async ({ request, env }) => {
-  console.log('Request received from contact form.', { IPAddress: request.headers.get('CF-Connecting-IP'), method: request.method });
+  try {
+    console.log('Request received from contact form.', { IPAddress: request.headers.get('CF-Connecting-IP'), method: request.method });
 
-  if (request.method !== 'POST') {
-    console.error('Method not allowed', { method: request.method });
-    return new Response('Method not allowed', { status: 405 });
-  }
+    if (request.method !== 'POST') {
+      console.error('Method not allowed', { method: request.method });
+      return new Response('Method not allowed', { status: 405 });
+    }
 
-  console.log('Extracting contact form data from request body...');
-  const { name, email, phoneNumber, source, additionalInformation } = await request.json<ContactForm>();
-  console.log('Extracted contact form data.', { name, email, phoneNumber, source, additionalInformation });
+    console.log('Extracting contact form data from request body...');
+    const { name, email, phoneNumber, source, additionalInformation } = await request.json<ContactForm>();
+    console.log('Extracted contact form data.', { name, email, phoneNumber, source, additionalInformation });
 
-  if (isEmpty(name)) {
-    console.error('The name field cannot be empty.');
-    return new Response('The name field cannot be empty.', { status: 400 });
-  }
-  if (isEmpty(phoneNumber)) {
-    console.error('The phone number field cannot be empty.');
-    return new Response('The phone number field cannot be empty.', { status: 400 });
-  }
-  if (isEmpty(source)) {
-    console.error('The source field cannot be empty.');
-    return new Response('The source field cannot be empty.', { status: 400 });
-  }
-  if (!isEmpty(email) && !validEmail.test(email)) {
-    console.error('The email address is invalid.');
-    return new Response('The email has to be a valid email address.', { status: 400 });
-  }
+    if (isEmpty(name)) {
+      console.error('The name field cannot be empty.');
+      return new Response('The name field cannot be empty.', { status: 400 });
+    }
+    if (isEmpty(phoneNumber)) {
+      console.error('The phone number field cannot be empty.');
+      return new Response('The phone number field cannot be empty.', { status: 400 });
+    }
+    if (isEmpty(source)) {
+      console.error('The source field cannot be empty.');
+      return new Response('The source field cannot be empty.', { status: 400 });
+    }
+    if (!isEmpty(email) && !validEmail.test(email)) {
+      console.error('The email address is invalid.');
+      return new Response('The email has to be a valid email address.', { status: 400 });
+    }
 
-  await sendEmailToSalesDepartment(name, source, phoneNumber, email, additionalInformation, env);
-  await sendEmailToSender(name, email, env);
+    await sendEmailToSalesDepartment(name, source, phoneNumber, email, additionalInformation, env);
+    await sendEmailToSender(name, email, env);
+    return new Response('Success', { status: 200 });
+  } catch (error) {
+    if (error instanceof Error) {
+      return new Response(error.message, { status: 500 });
+    } else {
+      return new Response(`An unexpected error occurred: ${error}`, { status: 500 });
+    }
+  }
 };
