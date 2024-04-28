@@ -56,7 +56,7 @@ export const onRequest: PagesFunction = async ({ request, env }) => {
   let content = `Hi,\n\n${name} has contacted us via our website asking for an appointment to be booked with them.\n\n`;
   if (sourceText != null) content += `They have found us by ${sourceText}.\n\n`;
   if (hasEmail) {
-    content += `You can reply to them via this email as they have kindly provided their email address, or you can call them on ${phoneNumber}.\n\n`;
+    content += `You can call them on ${phoneNumber} but they have also provided their email address as "${email}".\n\n`;
   } else {
     content += `You can call them on ${phoneNumber}.\n\n`;
   }
@@ -75,7 +75,7 @@ export const onRequest: PagesFunction = async ({ request, env }) => {
         dkim_selector: 'mailchannels',
         dkim_private_key: (env as any).MAILCHANNELS_DKIM_PRIVATE_KEY,
       }],
-      from: { email, name },
+      from: { email: 'no-reply@raynweswayblinds.com', name: 'Do Not Reply' },
       subject: `${name} has requested an appointment.`,
       content: [{
         type: 'text/plain',
@@ -90,6 +90,6 @@ export const onRequest: PagesFunction = async ({ request, env }) => {
     return new Response('Success', { status: 200 });
   } else {
     console.error('Failed to send email to sales department.', { status: response.status, statusText: response.statusText, responseText });
-    return new Response('Failed to send email to sales department.', { status: 500 });
+    return new Response('We\'re really sorry but we were unable to send your details to our sales department.', { status: 500 });
   }
 };
