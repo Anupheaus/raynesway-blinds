@@ -64,7 +64,7 @@ export const BookAppointment = createComponent('BookAppointment', ({
       if (fetchResult.ok) {
         setResult('Your request has been submitted successfully.');
       } else {
-        setResult('We\'re incredibly sorry but there has been an error submitting your request. Please try again later.');
+        setResult((await fetchResult.text()) ?? fetchResult.statusText);
       }
     }
   });
