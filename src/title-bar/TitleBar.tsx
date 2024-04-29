@@ -1,10 +1,10 @@
-import { createComponent, createStyles, Flex, Tooltip, useDelegatedBound, useForceUpdate } from '@anupheaus/react-ui';
+import { createComponent, createStyles, Flex, Tooltip, useBound, useDelegatedBound, useForceUpdate } from '@anupheaus/react-ui';
 import { theme } from '../theme';
 import { Typography } from '../typography';
 import Color from 'color';
 import { Link } from 'react-router-dom';
 import { Icon } from '../icon';
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { pages } from '../pages';
 import { useSubMenu } from '../sub-menu-provider';
 import { Button } from '../button';
@@ -23,6 +23,7 @@ const useStyles = createStyles({
     [theme.mediaMaxWidth]: {
       flexDirection: 'column',
       justifyContent: 'flex-start',
+      height: 'var(--title-area-height)',
     },
   },
   background: {
@@ -36,6 +37,18 @@ const useStyles = createStyles({
     backgroundColor: theme.background.primary,
     boxShadow: '0 0 6px 6px rgba(0 0 0 / 50%)',
     zIndex: -1,
+
+    [theme.mediaMaxWidth]: {
+      overflow: 'hidden',
+      opacity: 0.6,
+
+      '&::before': {
+        content: '""',
+        position: 'absolute',
+        inset: 0,
+        backgroundColor: Color(theme.background.primary).darken(0.2).hex(),
+      },
+    },
   },
   menu: {
     position: 'absolute',
@@ -56,6 +69,16 @@ const useStyles = createStyles({
       alignItems: 'center',
       justifyContent: 'flex-end',
       gap: 8,
+      top: '-100%',
+      opacity: 0,
+      transitionProperty: 'top, opacity',
+      transitionDuration: '1s',
+      transitionTimingFunction: 'ease-in-out',
+
+      '&.is-visible': {
+        top: 0,
+        opacity: 1,
+      },
     },
   },
   subMenuContainer: {
@@ -66,6 +89,10 @@ const useStyles = createStyles({
     zIndex: -3,
     overflow: 'hidden',
     pointerEvents: 'none',
+
+    [theme.mediaMaxWidth]: {
+      display: 'none',
+    },
   },
   subMenu: {
     position: 'absolute',
@@ -99,7 +126,7 @@ const useStyles = createStyles({
     left: -100,
     right: -100,
     height: '100%',
-    opacity: 0.8,
+    opacity: 0.9,
     backgroundColor: Color(theme.background.primary).darken(0.2).hex(),
     boxShadow: '0 0 10px 10px rgba(0 0 0 / 30%)',
     zIndex: -1,
@@ -139,7 +166,7 @@ const useStyles = createStyles({
     alignItems: 'center',
 
     [theme.mediaMaxWidth]: {
-      alignItems: 'flex-start',
+      top: 16,
     },
   },
   titleLink: {
@@ -163,6 +190,7 @@ const useStyles = createStyles({
     flexDirection: 'column',
     justifyContent: 'flex-end',
     pointerEvents: 'none',
+    gap: 8,
 
     [theme.mediaMaxWidth]: {
       position: 'relative',
@@ -170,6 +198,9 @@ const useStyles = createStyles({
       flexDirection: 'row',
       width: '100%',
       justifyContent: 'center',
+      top: 16,
+      gap: 0,
+      right: 0,
     },
   },
   contactUsContainer: {
@@ -179,10 +210,23 @@ const useStyles = createStyles({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     pointerEvents: 'all',
+
+    [theme.mediaMaxWidth]: {
+      top: 134,
+      left: 18,
+      right: 68,
+      '&>a': {
+        width: '100%',
+      }
+    },
   },
   contactUsButton: {
     fontSize: 22,
     whiteSpace: 'nowrap',
+
+    [theme.mediaMaxWidth]: {
+      width: '100%',
+    }
   },
   socialLinks: {
     paddingRight: 6,
@@ -190,11 +234,9 @@ const useStyles = createStyles({
 
     [theme.mediaMaxWidth]: {
       position: 'absolute',
-      top: -84,
-      right: 0,
-      flexDirection: 'column',
-      flexWrap: 'wrap-reverse',
-      maxHeight: 'var(--title-area-height)',
+      top: -88,
+      right: 2,
+      flexWrap: 'nowrap',
     },
   },
   link: {
@@ -209,10 +251,24 @@ const useStyles = createStyles({
     marginRight: -4,
     transform: 'scale(0.8)',
   },
+  mobileMenu: {
+    display: 'none',
+    pointerEvents: 'all',
+    zIndex: 1,
+
+    [theme.mediaMaxWidth]: {
+      display: 'flex',
+      position: 'absolute',
+      right: 26,
+      top: 144,
+      transform: 'scale(2)',
+    },
+  },
 });
 
 export const TitleBar = createComponent('TitleBar', () => {
   const { css, join } = useStyles();
+  const [mainMenuVisibleOnMobile, setMainMenuVisibleOnMobile] = useState(false);
   const subMenuOptions = useSubMenu();
   const currentSubMenuOptionsRef = useRef(subMenuOptions);
   const hideSubMenu = !Reflect.areDeepEqual(subMenuOptions, currentSubMenuOptionsRef.current) && currentSubMenuOptionsRef.current.length > 0;
@@ -234,10 +290,14 @@ export const TitleBar = createComponent('TitleBar', () => {
     }
   });
 
+  const hideMenuOnMobile = useBound(() => {
+    setMainMenuVisibleOnMobile(false);
+  });
+
   const menuItems = useMemo(() => pages.filter(({ isDefault, isVisibleInMenu = true }) => !isDefault && isVisibleInMenu)
     .map(({ path, label }) => (
       <Flex key={path} tagName="website-title-menu-item" className={css.menuItem} align="center" disableGrow>
-        <Link to={path} className={css.menuItemLink}>
+        <Link to={path} className={css.menuItemLink} onClick={hideMenuOnMobile}>
           <Typography type="website-title-menu-item" className={css.menuItemContent}>{label}</Typography>
         </Link>
       </Flex>
@@ -251,6 +311,10 @@ export const TitleBar = createComponent('TitleBar', () => {
     </Flex>
   )), [currentSubMenuOptionsRef.current]);
 
+  const openMenuOnMobile = useBound(() => {
+    setMainMenuVisibleOnMobile(v => !v);
+  });
+
   useEffect(() => {
     setTimeout(() => {
       currentSubMenuOptionsRef.current = subMenuOptions;
@@ -260,8 +324,8 @@ export const TitleBar = createComponent('TitleBar', () => {
 
   return (
     <Flex tagName="title-bar" className={css.titleBar}>
-      <Flex tagName="title-bar-background" className={css.background} />
-      <Flex tagName="title-bar-menu" className={css.menu}>
+      <Flex tagName="title-bar-background" className={join(css.background, mainMenuVisibleOnMobile && 'menu-is-visible')} />
+      <Flex tagName="title-bar-menu" className={join(css.menu, mainMenuVisibleOnMobile && 'is-visible')}>
         <Flex tagName="title-bar-background-menu" className={css.menuBackground} />
         {menuItems}
       </Flex>
@@ -282,7 +346,7 @@ export const TitleBar = createComponent('TitleBar', () => {
           <Typography type="website-title" className={css.title}>RAYNESWAY BLINDS</Typography>
         </Link>
       </Flex>
-      <Flex tagName="title-bar-contact-details" className={css.contactDetails} gap={8} height="min-content" disableGrow>
+      <Flex tagName="title-bar-contact-details" className={css.contactDetails} height="min-content" disableGrow>
         <a href="tel:+441332280585" className={css.link}>
           <Tooltip content="Call us on 01332 280585">
             <Typography type={'website-title-telephone-number'} className={css.link}>01332 280585</Typography>
@@ -312,6 +376,9 @@ export const TitleBar = createComponent('TitleBar', () => {
           </Tooltip>
         </Flex>
       </Flex>
-    </Flex >
+      <Flex tagName="mobile-menu" className={css.mobileMenu} disableGrow>
+        <Icon name="menu" onClick={openMenuOnMobile} />
+      </Flex>
+    </Flex>
   );
 });

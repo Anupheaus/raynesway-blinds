@@ -12,12 +12,20 @@ export const useAboutStyles = createStyles({
     overflowX: 'hidden',
     overflowY: 'auto',
     ...theme.scrollbars.styling,
+
+    [theme.mediaMaxWidth]: {
+      padding: '16px 8px',
+    }
   },
   section: {
     maxWidth: '40%',
-    minWidth: 300,
+    minWidth: 340,
     width: '100%',
     maxHeight: 'min-content',
+
+    [theme.mediaMaxWidth]: {
+      minWidth: '96%',
+    }
   },
   box: {
     borderRadius: 4,

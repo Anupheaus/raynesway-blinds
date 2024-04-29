@@ -51,9 +51,10 @@ export const theme = {
       subMenuAreaHeight: 50,
     },
     mobile: {
-      titleBarAreaHeight: 130,
+      titleBarAreaHeight: 190,
       menuAreaHeight: (34 * 5),
-      subMenuAreaHeight: (34 * 5),
+      subMenuAreaHeight: 0, // (34 * 5),
+
     },
   },
 };

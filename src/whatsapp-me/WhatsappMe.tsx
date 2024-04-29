@@ -1,5 +1,6 @@
 import { Flex, createComponent, createStyles, useBound } from '@anupheaus/react-ui';
 import { Media } from '../media';
+import { theme } from '../theme';
 
 const useStyles = createStyles({
   whatsappMe: {
@@ -8,6 +9,11 @@ const useStyles = createStyles({
     right: 32,
     width: 64,
     height: 64,
+
+    [theme.mediaMaxWidth]: {
+      bottom: 16,
+      right: 16,
+    }
   },
   shadow: {
     '&>img': {

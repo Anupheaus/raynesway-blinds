@@ -6,6 +6,7 @@ import { pages } from './pages';
 import { useSubMenu } from './sub-menu-provider';
 import { matchPath } from './helpers';
 import { useLazyLoadPages } from './hooks';
+import { theme } from './theme';
 
 const xOverlap = 200;
 const yOverlap = 100;
@@ -34,6 +35,10 @@ const useStyles = createStyles({
     transitionProperty: 'top, left, right, bottom, opacity',
     transitionDuration: '1s',
     transitionTimingFunction: 'ease-in-out',
+
+    [theme.mediaMaxWidth]: {
+      top: 'calc(var(--title-area-height)  + var(--content-offset))',
+    }
   },
 });
 

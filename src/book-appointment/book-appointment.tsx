@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import { useAboutStyles } from '../about';
 import { useState } from 'react';
 import { Button } from '../button';
+import { theme } from '../theme';
 
 const useStyles = createStyles({
   field: {
@@ -12,11 +13,34 @@ const useStyles = createStyles({
     '& textarea': {
       fontSize: 14,
     },
+
+    [theme.mediaMaxWidth]: {
+      fontSize: 13,
+
+      '& input': {
+        fontSize: 13,
+      },
+      '& textarea': {
+        fontSize: 13,
+      },
+
+      '& assistive-label': {
+        visibility: 'hidden',
+      }
+    }
   },
   dropdown: {
     '& dropdown-content-container': {
       fontSize: 14,
     },
+
+    [theme.mediaMaxWidth]: {
+      fontSize: 13,
+
+      '& dropdown-content-container': {
+        fontSize: 13,
+      }
+    }
   },
 });
 
@@ -85,7 +109,7 @@ export const BookAppointment = createComponent('BookAppointment', ({
           ) : (
             <ValidateSection name="fields">
               <Flex gap={16}>
-                <Text label="You name" value={name} onChange={setName} width="calc(60% - 8px)" className={localCss.field} />
+                <Text label="Your name" value={name} onChange={setName} width="calc(60% - 8px)" className={localCss.field} />
                 <Text label="Your phone number" value={phoneNumber} onChange={setPhoneNumber} className={localCss.field} width="calc(40% - 8px)"
                   assistiveHelp="Preferably a mobile number."
                 />
