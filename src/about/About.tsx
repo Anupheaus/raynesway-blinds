@@ -76,8 +76,12 @@ export const About = createComponent('About', ({
     <Flex tagName="about" className={css.about} align="center" isVertical gap={32}>
       {isActive && <Helmet>
         <title>Raynesway Blinds - About</title>
-        <meta name="description" content={'Raynesway Blinds manufacture blinds, shutters and awnings using only the finest materials.  ' +
-          'We are also open 5 days a week and can visit to measure and quote on saturday by appointment for your convenience.'} />
+        <meta property="og:title" content="Raynesway Blinds - About" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://rayneswayblinds.com/images/banner.png" />
+        <meta property="og:url" content="https://rayneswayblinds.com/about" />
+        <meta property="og:description" content="Raynesway Blinds manufacture and fit blinds, shutters and awnings using only the finest, but affordable, materials." />
+        <meta name="description" content="Raynesway Blinds manufacture and fit blinds, shutters and awnings using only the finest, but affordable, materials." />
       </Helmet>}
       <Flex tagName="about-main" isVertical gap={16} className={css.section}>
         <Flex tagName="about-content-title" isVertical align="center" className={join(css.box, css.titleBox)}>

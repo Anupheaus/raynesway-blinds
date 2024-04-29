@@ -18,8 +18,12 @@ export const Home = createComponent('Home', ({
     <Flex tagName="home" alignCentrally>
       {isActive && <Helmet>
         <title>Raynesway Blinds</title>
-        <meta name="description" content={'Raynesway Blinds manufacture blinds, shutters and awnings using only the finest materials.  ' +
-          'We are also open 5 days a week and can visit to measure and quote on saturday by appointment for your convenience.'} />
+        <meta property="og:title" content="Raynesway Blinds" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://rayneswayblinds.com/images/banner.png" />
+        <meta property="og:url" content="https://rayneswayblinds.com" />
+        <meta property="og:description" content={'Raynesway Blinds manufacture and fit blinds, shutters and awnings using only the finest, but affordable, materials.'} />
+        <meta name="description" content={'Raynesway Blinds manufacture and fit blinds, shutters and awnings using only the finest, but affordable, materials.'} />
         <script type="application/ld+json">{JSON.stringify(richResults)}</script>
       </Helmet>}
       <Messages

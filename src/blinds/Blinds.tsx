@@ -37,9 +37,12 @@ export const Blinds = createComponent('Blinds', ({
     <Flex tagName="blinds" className={css.blinds}>
       {isActive && <Helmet>
         <title>Raynesway Blinds - Blinds</title>
-        <meta name="description" content={'Discover the perfect window solutions with Raynesway Blinds! Explore our exquisite collection ' +
-          'of blinds, meticulously crafted to elevate your space.  From stylish designs to customizable options, find the ideal window treatments ' +
-          'for every room.'} />
+        <meta property="og:title" content="Raynesway Blinds - Blinds" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://rayneswayblinds.com/images/venetians-1.jpg" />
+        <meta property="og:url" content="https://rayneswayblinds.com/blinds" />
+        <meta property="og:description" content="Discover the perfect window solutions with Raynesway Blinds! Explore our exquisite collection of blinds, meticulously crafted to elevate your space." />
+        <meta name="description" content="Discover the perfect window solutions with Raynesway Blinds! Explore our exquisite collection of blinds, meticulously crafted to elevate your space." />
       </Helmet>}
       <Grid cellHeight={300} gap={32}>
         <GridCell type="title"><h1>Venetian Blinds</h1></GridCell>

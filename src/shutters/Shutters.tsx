@@ -25,8 +25,12 @@ export const Shutters = createComponent('Shutters', ({
     <Flex tagName="shutters" className={css.shutters}>
       {isActive && <Helmet>
         <title>Raynesway Blinds - Shutters</title>
-        <meta name="description" content={'Enhance your living spaces with Raynesway Blinds\' exquisite Shutters collection. Elevate your home\'s aesthetics ' +
-          'and functionality with our premium shutter designs, meticulously crafted for durability and style.'} />
+        <meta property="og:title" content="Raynesway Blinds - Shutters" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://rayneswayblinds.com/images/window-shutters-1.jpg" />
+        <meta property="og:url" content="https://rayneswayblinds.com/shutters" />
+        <meta property="og:description" content="Enhance your living spaces with Raynesway Blinds' exquisite Shutters collection, meticulously crafted for durability and style." />
+        <meta name="description" content="Enhance your living spaces with Raynesway Blinds' exquisite Shutters collection, meticulously crafted for durability and style." />
       </Helmet>}
       <Grid cellHeight={300} gap={32}>
         <GridCell type="title"><Typography type="title">Window Shutters</Typography></GridCell>
