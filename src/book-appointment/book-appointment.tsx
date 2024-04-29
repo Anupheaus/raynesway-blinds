@@ -115,8 +115,8 @@ export const BookAppointment = createComponent('BookAppointment', ({
                 />
               </Flex>
               <Flex gap={16}>
-                <Text label="Your email" value={email} onChange={setEmail} isOptional className={localCss.field} width="calc(40% - 8px)" />
-                <DropDown label="How did you hear about us?" value={source} onChange={setSource} values={sourceOptions} className={localCss.dropdown} width="calc(60% - 8px)" />
+                <Text label="Your email" value={email} onChange={setEmail} isOptional className={localCss.field} width="calc(55% - 8px)" />
+                <DropDown label="How did you hear about us?" value={source} onChange={setSource} values={sourceOptions} className={localCss.dropdown} width="calc(45% - 8px)" />
               </Flex>
               <Text label="Additional information" value={additionalInformation} onChange={setAdditionalInformation} isOptional wide className={localCss.field} multiline={3} />
               <Flex align="right" disableGrow>
