@@ -72,8 +72,8 @@ export const BookAppointment = createComponent('BookAppointment', ({
   return (
     <Flex tagName="book-appointment" className={css.about} align="center" isVertical gap={32}>
       {isActive && <Helmet>
-        <title>Raynesway Blinds - Book an appointment</title>
-        <meta name="description" content={'Book an appointment with Raynesway Blinds today and find out how easily and affordably we can transform your home.'} />
+        <title>Raynesway Blinds - Request an appointment</title>
+        <meta name="description" content={'Request an appointment with Raynesway Blinds today and find out how easily and affordably we can transform your home.'} />
       </Helmet>}
       <Flex tagName="about-main" isVertical gap={16} className={css.section}>
         <Flex tagName="about-content-title" isVertical align="center" className={join(css.box, css.titleBox)}>

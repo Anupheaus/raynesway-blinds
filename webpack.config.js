@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ProgressPlugin = require('progress-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const SiteMapPlugin = require('sitemap-webpack-plugin').default;
 
 const createCommonSettings = isDev => ({
   module: {
@@ -97,6 +98,25 @@ module.exports = (env, argv) => {
         xhtml: true,
         cache: false,
         hash: true,
+      }),
+      new SiteMapPlugin({
+        base: 'https://rayneswayblinds.com',
+        paths: [
+          '/',
+          '/blinds',
+          '/shutters',
+          '/awnings',
+          '/about',
+          '/referrals',
+          '/referrals/recommendations',
+          '/referrals/affiliates',
+          '/book-appointment',
+        ],
+        options: {
+          filename: 'sitemap.xml',
+          lastmod: true,
+          changefreq: 'daily',
+        },
       }),
     ],
     resolve: {
