@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 /* @ts-expect-error email signature file */
-import emailSignature from './emailSignature.html';
+import emailSignature from './emailSignature.txt';
 
 interface ContactForm {
   name: string;
