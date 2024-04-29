@@ -118,15 +118,6 @@ module.exports = (env, argv) => {
       port: 9000,
       historyApiFallback: true,
     },
-  }, {
-    ...commonSettings,
-    name: 'contact-us',
-    entry: { 'contact-us': './functions/api/contact-us.ts' },
-    devtool: 'source-map',
-    target: 'node',
-    output: {
-      path: path.resolve(__dirname, './functions/api'),
-    },
   }];
 };
 
