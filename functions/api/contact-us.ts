@@ -71,7 +71,7 @@ async function sendEmailToSender(name: string, email: string | undefined, env: P
 
   const content = `Hi ${name},<br /><br />Thank you very much for your request to make an appointment with us via our website.<br /><br />` +
     'We will be in touch with you very soon to arrange a suitable time for us to come and visit you and ' +
-    `measure up where your new blinds could be installed.<br /><br />With Kind Regards,<br /><br />${emailSignature}`;
+    `measure up where your new blinds, shutters or awnings will be installed.<br />${emailSignature}`;
 
   console.log('Sending email to sender...');
   const sendRequest = new Request('https://api.mailchannels.net/tx/v1/send', {
