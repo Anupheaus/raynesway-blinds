@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-/* @ts-expect-error email signature file */
-import emailSignature from './emailSignature.txt';
+// * @ts-expect-error email signature file */
+// import emailSignature from './emailSignature.txt';
 
 interface ContactForm {
   name: string;
@@ -71,7 +71,7 @@ async function sendEmailToSender(name: string, email: string | undefined, env: P
 
   const content = `Hi ${name},\n\nThank you very much for your request to make an appointment with us via our website.\n\n` +
     'We will be in touch with you very soon to arrange a suitable time for us to come and visit you and ' +
-    'measure up where your new blinds could be installed.\n\nWith Kind Regards,\n' + emailSignature;
+    'measure up where your new blinds could be installed.\n\nWith Kind Regards,\n\n<b>Raynesway Blinds Sales Department</b>';
 
   console.log('Sending email to sender...');
   const sendRequest = new Request('https://api.mailchannels.net/tx/v1/send', {
